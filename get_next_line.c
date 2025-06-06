@@ -6,12 +6,11 @@
 /*   By: tmase <tmase@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/29 21:00:13 by tmase             #+#    #+#             */
-/*   Updated: 2025/06/06 21:27:34 by tmase            ###   ########.fr       */
+/*   Updated: 2025/06/06 22:01:50 by tmase            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-#include <stdio.h>
 
 char	*get_remaining(char *save)
 {
@@ -57,7 +56,7 @@ ssize_t	read_and_join(int fd, char **save, char *buff)
 	if (data_size <= 0)
 		return (data_size);
 	buff[data_size] = '\0';
-	tmp = ft_strjoin_gnl(*save, buff);
+	tmp = ft_strjoin(*save, buff);
 	if (!tmp)
 		return (-1);
 	free(*save);
