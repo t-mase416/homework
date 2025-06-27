@@ -6,7 +6,7 @@
 /*   By: tmase <tmase@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 15:26:18 by tmase             #+#    #+#             */
-/*   Updated: 2025/06/27 15:14:52 by tmase            ###   ########.fr       */
+/*   Updated: 2025/06/27 16:13:24 by tmase            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,11 +79,18 @@
 // 	mlx_loop(mlx);
 // }
 
-int	win_close(int keycode, t_vars *vars)
+int	close_by_cross(t_game *game)
+{
+	mlx_destroy_window(game->mlx, game->win);
+	exit(0);
+	return (0);
+}
+
+int	close_by_esc(int keycode, t_game *game)
 {
 	if (keycode == KEY_ESC)
 	{
-		mlx_destroy_window(vars->mlx, vars->win);
+		mlx_destroy_window(game->mlx, game->win);
 		exit(0);
 	}
 	return (0);
@@ -91,12 +98,19 @@ int	win_close(int keycode, t_vars *vars)
 
 int main(void)
 {
-	t_vars vars;
+	t_game game;
 
-	vars.mlx = mlx_init();
-	vars.win = mlx_new_window(vars.mlx, 1920, 1080, "Hello world!");
-	
-	mlx_hook(vars.win, 2, 1L<<0, win_close, &vars);
+	game.mlx = mlx_init();
+	game.win = mlx_new_window(game.mlx, 1920, 1080, "So Long");
+	if (!game.win)
+	{
+		printf("Error: mlx_new_window() failed\n");
+		return (1);
+	}
+	mlx_hook(game.win, 17, (1L<<17), close_by_cross, &game);
 
-	mlx_loop(vars.mlx);
+	mlx_hook(game.win, 2, (1L<<0), close_by_esc, &game);
+
+	mlx_loop(game.mlx);
+	return (0);
 }

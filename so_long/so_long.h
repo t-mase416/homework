@@ -6,7 +6,7 @@
 /*   By: tmase <tmase@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 18:29:14 by tmase             #+#    #+#             */
-/*   Updated: 2025/06/27 15:15:45 by tmase            ###   ########.fr       */
+/*   Updated: 2025/06/27 16:13:41 by tmase            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,13 +35,14 @@ typedef struct	s_data {
 	int		endian;
 }				t_data;
 
-typedef struct	s_vars {
+typedef struct	s_game {
 	void	*mlx;
 	void	*win;
-}				t_vars;
+}				t_game;
 
 
 
 
 
 #endif
+
