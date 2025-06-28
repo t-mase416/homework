@@ -6,14 +6,14 @@
 /*   By: tmase <tmase@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 16:29:13 by tmase             #+#    #+#             */
-/*   Updated: 2025/06/27 22:40:12 by tmase            ###   ########.fr       */
+/*   Updated: 2025/06/28 13:15:56 by tmase            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "map.h"
 #include <stdio.h>
 
-void	free_map(char	**map)
+void	free_map(char **map)
 {
 	int	i;
 

@@ -6,13 +6,13 @@
 /*   By: tmase <tmase@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 21:22:48 by tmase             #+#    #+#             */
-/*   Updated: 2025/06/27 22:31:28 by tmase            ###   ########.fr       */
+/*   Updated: 2025/06/28 15:41:13 by tmase            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "map.h"
 
-static int	top_bot_check(char *str)
+static t_bool	top_bot_check(char *str)
 {
 	int	i;
 
@@ -20,37 +20,37 @@ static int	top_bot_check(char *str)
 	while (str[i])
 	{
 		if (str[i] != '1')
-			return (0);
+			return (False);
 		i++;
 	}
-	return (1);
+	return (True);
 }
 
-static int	middle_check(char *str)
+static t_bool	middle_check(char *str)
 {
 	int len;
 
 	len = ft_strlen(str);
 	if (*str == '1' && str[len - 1] == '1')
-		return (1);
-	return (0);
+		return (True);
+	return (False);
 }
 
-int	check_walls(char **map)
+t_bool	check_walls(char **map)
 {
 	int	i;
 
 	i = 0;
 	if (!top_bot_check(map[i]))
-		return (0);
+		return (False);
 	i++;
 	while (map[i + 1])
 	{
 		if (!middle_check(map[i]))
-			return (0);
+			return (False);
 		i++;
 	}
 	if (!top_bot_check(map[i]))
-		return (0);
-	return (1);
+		return (False);
+	return (True);
 }

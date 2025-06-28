@@ -6,7 +6,7 @@
 /*   By: tmase <tmase@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 21:42:15 by tmase             #+#    #+#             */
-/*   Updated: 2025/06/27 22:13:14 by tmase            ###   ########.fr       */
+/*   Updated: 2025/06/28 15:37:41 by tmase            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,13 @@ static int	check_line_chars(char *str)
 	while (str[i])
 	{
 		if (!ft_strchr("10PEC", str[i]))
-			return (0);
+			return (False);
 		i++;
 	}
-	return (1);
+	return (True);
 }
 
-int	check_chars(char **map)
+t_bool	check_chars(char **map)
 {
 	int	i;
 
@@ -34,8 +34,8 @@ int	check_chars(char **map)
 	while (map[i])
 	{
 		if (!check_line_chars(map[i]))
-			return (0);
+			return (False);
 		i++;
 	}
-	return (1);
+	return (True);
 }

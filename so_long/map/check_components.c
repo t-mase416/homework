@@ -6,7 +6,7 @@
 /*   By: tmase <tmase@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 21:22:44 by tmase             #+#    #+#             */
-/*   Updated: 2025/06/27 21:48:02 by tmase            ###   ########.fr       */
+/*   Updated: 2025/06/28 15:37:33 by tmase            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static void	calc_components(char *str, int *P_count, int *E_count, int *C_count)
 	return ;
 }
 
-int	check_components(char **map)
+t_bool	check_components(char **map)
 {
 	int	i;
 	int	P_count;
@@ -45,10 +45,10 @@ int	check_components(char **map)
 	{
 		calc_components(map[i], &P_count, &E_count, &C_count);
 		if (P_count > 1 || E_count > 1)
-			return (0);
+			return (False);
 		i++;
 	}
 	if (P_count != 1 || E_count != 1 || C_count < 1)
-		return (0);
-	return (1);
+		return (False);
+	return (True);
 }

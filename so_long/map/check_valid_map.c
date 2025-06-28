@@ -6,21 +6,23 @@
 /*   By: tmase <tmase@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 16:16:30 by tmase             #+#    #+#             */
-/*   Updated: 2025/06/27 22:36:16 by tmase            ###   ########.fr       */
+/*   Updated: 2025/06/28 15:38:28 by tmase            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "map.h"
 
-int	check_valid_map(char **map)
+t_bool	check_valid_map(char **map)
 {
 	if (map == NULL)
-		return (0);
+		return (False);
 	if (!check_walls(map))
-		return (0);
+		return (False);
 	if (!check_components(map))
-		return (0);
+		return (False);
 	if (!check_chars(map))
-		return (0);
-	return (1);
+		return (False);
+	if (!check_goal(map))
+		return (False);
+	return (True);
 }
