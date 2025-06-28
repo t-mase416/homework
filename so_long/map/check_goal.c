@@ -6,7 +6,7 @@
 /*   By: tmase <tmase@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/28 13:06:26 by tmase             #+#    #+#             */
-/*   Updated: 2025/06/28 16:42:27 by tmase            ###   ########.fr       */
+/*   Updated: 2025/06/28 21:00:17 by tmase            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ char	**map_copy(char **original_map, int height)
 	int	i;
 	char	**copied_map;
 
-	copied_map = malloc(sizeof(char *) * height + 1);
+	copied_map = malloc(sizeof(char *) * (height + 1));
 	if (!copied_map)
 	return (NULL);
 	i = 0;
@@ -45,7 +45,7 @@ char	**map_copy(char **original_map, int height)
 	return (copied_map);
 }
 
-void	get_cooridinate(char **map, t_coordinate  *var, char c)
+void	get_coordinate(char **map, t_coordinate  *var, char c)
 {
 	int	i;
 	int	j;
@@ -60,15 +60,15 @@ void	get_cooridinate(char **map, t_coordinate  *var, char c)
 			break ;
 		i++;
 	}
-	var->x = i;
-	var->y = j;
+	var->x = j;
+	var->y = i;
 }
 
 void	flood_fill(char **copied_map, int x, int y)
 {
-	if (copied_map[x][y] == 'F' || copied_map[x][y] == '1')
+	if (copied_map[y][x] == 'F' || copied_map[y][x] == '1')
 		return ;
-	copied_map[x][y] = 'F';
+	copied_map[y][x] = 'F';
 	flood_fill(copied_map, x, y + 1);
 	flood_fill(copied_map, x - 1, y);
 	flood_fill(copied_map, x, y - 1);
@@ -77,22 +77,23 @@ void	flood_fill(char **copied_map, int x, int y)
 
 t_bool	cmp_maps(char **original_map, char **copied_map)
 {
-	t_coordinate	collectible;
 	t_coordinate	exit;
 	int				i;
 	int				j;
 
-	get_cooridinate(original_map, &exit, 'E');
-	if (copied_map[exit.x][exit.y] != 'F')
+	get_coordinate(original_map, &exit, 'E');
+	if (copied_map[exit.y][exit.x] != 'F')
 		return (False);
 	i = 0;
 	while (original_map[i])
 	{
 		j = 0;
-		while (original_map[i][j] && original_map[i][j] != 'C')
+		while (original_map[i][j])
+		{
+			if (original_map[i][j] == 'C' && copied_map[i][j] != 'F')
+				return (False);
 			j++;
-		if (original_map[i][j] == 'C' && copied_map[i][j] != 'F')
-			return (False);
+		}
 		i++;
 	}
 	return (True);
@@ -100,17 +101,17 @@ t_bool	cmp_maps(char **original_map, char **copied_map)
 
 t_bool	check_goal(char **original_map)
 {
-	char		**copied_map;
-	int			height;
-	int			i;
+	char			**copied_map;
+	int				height;
+	int				i;
 	t_coordinate	start;
 
 	i = 0;
 	height = get_map_size(original_map);
 	copied_map = map_copy(original_map, height);
 	if (!copied_map)
-		return (False);
-	get_cooridinate(original_map, &start, 'P');
+	return (False);
+	get_coordinate(original_map, &start, 'P');
 	flood_fill(copied_map, start.x, start.y);
 	if (!cmp_maps(original_map, copied_map))
 		return (False);
