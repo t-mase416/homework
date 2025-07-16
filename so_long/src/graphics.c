@@ -1,29 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   event.c                                            :+:      :+:    :+:   */
+/*   graphics.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tmase <tmase@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/12 18:28:31 by tmase             #+#    #+#             */
-/*   Updated: 2025/07/16 18:44:47 by tmase            ###   ########.fr       */
+/*   Created: 2025/07/16 18:45:32 by tmase             #+#    #+#             */
+/*   Updated: 2025/07/16 19:10:26 by tmase            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
 
-int	handle_key(int keycode, t_game *game)
+void	destroy_images(t_game *game)
 {
-	if (keycode == KEY_ESC)
-		close_game(game);
-	return (0);
-}
-
-int	close_game(t_game *game)
-{
-	if (game->win)
-		mlx_destroy_window(game->mlx, game->win);
-	write(1, "Game closed\n", 14);
-	exit(0);
-	return (0);
+	if (game->wall)
+		mlx_destroy_image(game->mlx, game->wall);
+	if (game->floor)
+		mlx_destroy_image(game->mlx, game->floor);
+	if (game->player)
+		mlx_destroy_image(game->mlx, game->player);
+	if (game->collectible)
+		mlx_destroy_image(game->mlx, game->collectible);
+	if (game->exit)
+		mlx_destroy_image(game->mlx, game->exit);
 }

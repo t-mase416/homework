@@ -6,7 +6,7 @@
 /*   By: tmase <tmase@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 18:29:14 by tmase             #+#    #+#             */
-/*   Updated: 2025/06/27 16:13:41 by tmase            ###   ########.fr       */
+/*   Updated: 2025/07/16 19:10:44 by tmase            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,8 @@
 # include <stdio.h>
 # include <mlx.h>
 
-#ifndef M_PI
-# define M_PI 3.14159265358979323846
-#endif
-
-#define KEY_ESC 65307
+# define TILE_SIZE 64
+# define KEY_ESC 65307
 
 
 
@@ -38,11 +35,18 @@ typedef struct	s_data {
 typedef struct	s_game {
 	void	*mlx;
 	void	*win;
+	char 	**map;
+	int		map_width;
+	int		map_height;
+	void	*wall;
+	void	*floor;
+	void	*player;
+	void	*collectible;
+	void	*exit;
 }				t_game;
 
-
+void	destroy_images(t_game *game)
 
 
 
 #endif
-
