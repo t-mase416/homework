@@ -1,12 +1,14 @@
 NAME	= solong
 
-# コンパイラとフラグ
 CC		= cc
 # CFLAGS	= -Wall -Wextra -Werror
 
-# ソースとオブジェクト
-SRC		= main.c
-OBJ		= $(SRC:.c=.o)
+# ゲーム本体のメインファイル
+GAME_MAIN_SRC 	= main.c
+# GNL ソースファイル
+GNL_SRCS = gnl/get_next_line.c gnl/get_next_line_utils.c
+# MAP ソースファイル
+MAP_SRCS = map/read_map.c map/check_walls.c map/check_components.c map/check_chars.c map/check_goal.c
 
 # MiniLibX 設定
 MLX_DIR	= minilibx-linux
@@ -18,8 +20,12 @@ LIBFT_DIR = libft
 LIBFT	= $(LIBFT_DIR)/libft.a
 LIBFT_INC = -I$(LIBFT_DIR)
 
-# インクルード
 INCLUDES = $(MLX_INC) $(LIBFT_INC)
+
+# オブジェクトファイル定義
+GNL_OBJS = $(GNL_SRCS:.c=.o)
+MAP_OBJS = $(MAP_SRCS:.c=.o)
+GAME_MAIN_OBJ = $(GAME_MAIN_SRC:.c=.o)
 
 # 実行ファイル作成
 all: $(NAME)
@@ -30,6 +36,8 @@ $(NAME): $(OBJ) $(LIBFT)
 # libft をビルド
 $(LIBFT):
 	$(MAKE) -C $(LIBFT_DIR)
+
+
 
 # オブジェクトのビルド
 %.o: %.c

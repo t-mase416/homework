@@ -6,7 +6,7 @@
 /*   By: tmase <tmase@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 16:29:13 by tmase             #+#    #+#             */
-/*   Updated: 2025/06/28 21:01:07 by tmase            ###   ########.fr       */
+/*   Updated: 2025/06/30 17:22:26 by tmase            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	free_map(char **map)
 	free(map);
 }
 
-int	calc_height(char *file_name)
+static int	calc_height(char *file_name)
 {
 	char 	*line;
 	int		height = 1;
