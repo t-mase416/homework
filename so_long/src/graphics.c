@@ -6,7 +6,7 @@
 /*   By: tmase <tmase@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/16 18:45:32 by tmase             #+#    #+#             */
-/*   Updated: 2025/07/16 19:10:26 by tmase            ###   ########.fr       */
+/*   Updated: 2025/07/17 17:01:40 by tmase            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,12 @@ void	destroy_images(t_game *game)
 {
 	if (game->wall)
 		mlx_destroy_image(game->mlx, game->wall);
-	if (game->floor)
-		mlx_destroy_image(game->mlx, game->floor);
-	if (game->player)
-		mlx_destroy_image(game->mlx, game->player);
-	if (game->collectible)
-		mlx_destroy_image(game->mlx, game->collectible);
+	if (game->tile)
+		mlx_destroy_image(game->mlx, game->tile);
+	if (game->flog)
+		mlx_destroy_image(game->mlx, game->flog);
+	if (game->coin)
+		mlx_destroy_image(game->mlx, game->coin);
 	if (game->exit)
 		mlx_destroy_image(game->mlx, game->exit);
 }

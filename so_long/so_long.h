@@ -6,7 +6,7 @@
 /*   By: tmase <tmase@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 18:29:14 by tmase             #+#    #+#             */
-/*   Updated: 2025/07/16 19:10:44 by tmase            ###   ########.fr       */
+/*   Updated: 2025/07/17 16:58:40 by tmase            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,9 @@ typedef struct	s_game {
 	int		map_width;
 	int		map_height;
 	void	*wall;
-	void	*floor;
-	void	*player;
-	void	*collectible;
+	void	*tile;
+	void	*flog;
+	void	*coin;
 	void	*exit;
 }				t_game;
 
