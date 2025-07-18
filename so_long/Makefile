@@ -1,56 +1,63 @@
-NAME	= solong
+# 実行ファイル名
+NAME	= so_long
 
+# コンパイラとフラグ
 CC		= cc
-# CFLAGS	= -Wall -Wextra -Werror
+CFLAGS	= -Wall -Wextra -Werror
 
-# ゲーム本体のメインファイル
-GAME_MAIN_SRC 	= main.c
-# GNL ソースファイル
-GNL_SRCS = gnl/get_next_line.c gnl/get_next_line_utils.c
-# MAP ソースファイル
-MAP_SRCS = map/read_map.c map/check_walls.c map/check_components.c map/check_chars.c map/check_goal.c
+# ソースファイル (.c)
+# ゲーム本体のソースファイルを追加
+SRCS	=	main.c \
+			src/graphics.c \
+			src/draw.c \
+			textures/load_images.c \
+			gnl/get_next_line.c \
+			gnl/get_next_line_utils.c \
+			map/read_map.c \
+			map/check_walls.c \
+			map/check_components.c \
+			map/check_chars.c \
+			map/check_goal.c \
+			map/check_valid_map.c # check_valid_map.c を追加
 
-# MiniLibX 設定
-MLX_DIR	= minilibx-linux
-MLX		= -L$(MLX_DIR) -lmlx -lXext -lX11 -lm -lbsd
-MLX_INC	= -I$(MLX_DIR)
+# オブジェクトファイル (.o) - ソースファイルから自動生成
+OBJS	= $(SRCS:.c=.o)
 
-# libft 設定
-LIBFT_DIR = libft
-LIBFT	= $(LIBFT_DIR)/libft.a
-LIBFT_INC = -I$(LIBFT_DIR)
+# libft の設定
+LIBFT_DIR	= libft
+LIBFT		= $(LIBFT_DIR)/libft.a
 
-INCLUDES = $(MLX_INC) $(LIBFT_INC)
+# MiniLibX の設定
+MLX_DIR		= minilibx-linux
+MLX_LIB		= -L$(MLX_DIR) -lmlx -lXext -lX11 -lm
 
-# オブジェクトファイル定義
-GNL_OBJS = $(GNL_SRCS:.c=.o)
-MAP_OBJS = $(MAP_SRCS:.c=.o)
-GAME_MAIN_OBJ = $(GAME_MAIN_SRC:.c=.o)
+# インクルードパス
+INCLUDES	= -I. -I$(LIBFT_DIR) -I$(MLX_DIR)
 
-# 実行ファイル作成
+# --- ルール ---
+
 all: $(NAME)
 
-$(NAME): $(OBJ) $(LIBFT)
-	$(CC) $(CFLAGS) $(INCLUDES) $(OBJ) -o $(NAME) $(MLX) $(LIBFT)
+# 実行ファイルのリンク
+$(NAME): $(OBJS) $(LIBFT)
+	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(MLX_LIB) -L$(LIBFT_DIR) -lft
 
-# libft をビルド
+# libft のビルド
 $(LIBFT):
-	$(MAKE) -C $(LIBFT_DIR)
+	@$(MAKE) -C $(LIBFT_DIR)
 
-
-
-# オブジェクトのビルド
+# オブジェクトファイルのコンパイル
 %.o: %.c
 	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
-# クリーン
+# クリーンアップ
 clean:
-	rm -f $(OBJ)
-	$(MAKE) -C $(LIBFT_DIR) clean
+	@rm -f $(OBJS)
+	@$(MAKE) -C $(LIBFT_DIR) clean
 
 fclean: clean
-	rm -f $(NAME)
-	$(MAKE) -C $(LIBFT_DIR) fclean
+	@rm -f $(NAME)
+	@$(MAKE) -C $(LIBFT_DIR) fclean
 
 re: fclean all
 

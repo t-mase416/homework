@@ -6,7 +6,7 @@
 /*   By: tmase <tmase@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 16:18:22 by tmase             #+#    #+#             */
-/*   Updated: 2025/06/28 15:54:00 by tmase            ###   ########.fr       */
+/*   Updated: 2025/07/18 16:40:21 by tmase            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ t_bool	check_valid_map(char **map);
 
 void	free_map(char **map);
 char	**load_map(char *file_name);
+int	get_map_size(char **map);
 
 
 

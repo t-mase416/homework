@@ -6,78 +6,17 @@
 /*   By: tmase <tmase@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 15:26:18 by tmase             #+#    #+#             */
-/*   Updated: 2025/06/27 16:13:24 by tmase            ###   ########.fr       */
+/*   Updated: 2025/07/18 16:40:00 by tmase            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include <X11/X.h>
 #include <X11/keysym.h>
+#include <math.h>
 #include "mlx.h"
 #include "so_long.h"
-#include <math.h>
-
-
-// void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
-// {
-// 	char	*dst;
-
-// 	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
-// 	*(unsigned int*)dst = color;
-// }
-
-// void	draw_line(t_data *img, int x0, int y0, int x1, int y1, int color)
-// {
-// 	int rate_of_change = (y1 - y0) / (x1 - x0);
-// 	while (x0 < x1)
-// 	{
-// 		my_mlx_pixel_put(img, x0, (x0 * rate_of_change), color);
-// 		x0++;
-// 	}
-// }
-
-// void	draw_circle(t_data *img, int cx, int cy, int radius, int color)
-// {
-// 	double angle = 0;
-// 	double step = 0.01;
-
-// 	while (angle < 2 * M_PI)
-// 	{
-// 		int x = (int)(cx + radius * cos(angle));
-// 		int y = (int)(cy + radius * sin(angle));
-// 		my_mlx_pixel_put(img, x, y, color);
-// 		angle += step;
-// 	}
-// }
-
-// void	draw_triangle(t_data *img, int x, int y, int color)
-// {
-// 	draw_line(img, 0, 500, 500, 500, 0x0FF0000);
-// 	// draw_line(img, 250, 0, 500, 250, 0x0FF0000);
-// }
-
-// int key_hook(void)
-// {
-// 	printf("Hello from key_hook!\n");
-// 	return (0);
-// }
-
-// int main(void)
-// {
-// 	void *mlx;
-// 	void *mlx_win;
-// 	t_data img;
-
-// 	mlx = mlx_init();
-// 	mlx_win = mlx_new_window(mlx, 500, 500, "Hello World");
-// 	img.img = mlx_new_image(mlx, 500, 500);
-// 	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length, &img.endian);
-// 	draw_circle (&img, 250, 250, 100, 0x00FF0000);
-// 	draw_line(&img, 0, 0, 500, 500, 0x000FF00);
-// 	draw_triangle(&img, 0, 0, 0x00FF00);
-// 	mlx_put_image_to_window(mlx, mlx_win, img.img, 0, 0);
-// 	mlx_loop(mlx);
-// }
+#include "map/map.h"
 
 int	close_by_cross(t_game *game)
 {
@@ -96,21 +35,39 @@ int	close_by_esc(int keycode, t_game *game)
 	return (0);
 }
 
-int main(void)
+int main(int argc, char **argv)
 {
 	t_game game;
 
+	if (argc != 2)
+	{
+		printf("Error\nargc must be 2");
+		return (1);
+	}
+	game = (t_game){0};
+	game.map = load_map(argv[1]);
+	if (!game.map || !check_valid_map(game.map))
+	{
+		printf("Error\nmap error");
+		if (game.map)
+			free_map(game.map);
+		return (1);
+	}
 	game.mlx = mlx_init();
-	game.win = mlx_new_window(game.mlx, 1920, 1080, "So Long");
+	game.map_height = get_map_size(game.map) * TILE_SIZE;
+	game.map_width = ft_strlen(game.map[0]) * TILE_SIZE;
+	game.win = mlx_new_window(game.mlx, game.map_height, game.map_width, "So Long");
 	if (!game.win)
 	{
 		printf("Error: mlx_new_window() failed\n");
+		if (game.map)
+			free_map(game.map);
 		return (1);
 	}
+	load_images(&game);
+	draw_map(&game);
 	mlx_hook(game.win, 17, (1L<<17), close_by_cross, &game);
-
 	mlx_hook(game.win, 2, (1L<<0), close_by_esc, &game);
-
 	mlx_loop(game.mlx);
 	return (0);
 }
