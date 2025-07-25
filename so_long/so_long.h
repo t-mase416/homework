@@ -6,7 +6,7 @@
 /*   By: tmase <tmase@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 18:29:14 by tmase             #+#    #+#             */
-/*   Updated: 2025/07/18 16:37:02 by tmase            ###   ########.fr       */
+/*   Updated: 2025/07/25 22:58:58 by tmase            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,10 @@
 
 # define TILE_SIZE 64
 # define KEY_ESC 65307
+# define KEY_UP 119
+# define KEY_RIGHT 100
+# define KEY_LEFT 97
+# define KEY_DOWN 115
 
 typedef struct	s_data {
 	void	*img;

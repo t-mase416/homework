@@ -10,7 +10,7 @@ CFLAGS	= -Wall -Wextra -Werror
 SRCS	=	main.c \
 			src/graphics.c \
 			src/draw.c \
-			textures/load_images.c \
+			src/load_images.c \
 			gnl/get_next_line.c \
 			gnl/get_next_line_utils.c \
 			map/read_map.c \
