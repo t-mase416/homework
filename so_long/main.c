@@ -6,7 +6,7 @@
 /*   By: tmase <tmase@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 15:26:18 by tmase             #+#    #+#             */
-/*   Updated: 2025/07/25 23:06:39 by tmase            ###   ########.fr       */
+/*   Updated: 2025/08/01 18:35:38 by tmase            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,23 +17,6 @@
 #include "mlx.h"
 #include "so_long.h"
 #include "map/map.h"
-
-// int	close_by_cross(t_game *game)
-// {
-// 	mlx_destroy_window(game->mlx, game->win);
-// 	exit(0);
-// 	return (0);
-// }
-
-// int	close_by_esc(int keycode, t_game *game)
-// {
-// 	if (keycode == KEY_ESC)
-// 	{
-// 		mlx_destroy_window(game->mlx, game->win);
-// 		exit(0);
-// 	}
-// 	return (0);
-// }
 
 int	cleanup_and_exit(t_game *game)
 {

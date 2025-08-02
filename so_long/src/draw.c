@@ -6,7 +6,7 @@
 /*   By: tmase <tmase@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/16 19:14:11 by tmase             #+#    #+#             */
-/*   Updated: 2025/07/25 21:50:14 by tmase            ###   ########.fr       */
+/*   Updated: 2025/07/31 17:56:44 by tmase            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@ void	draw_tile(t_game *game, char tile_type, int x, int y)
 		return ;
 	width = x * TILE_SIZE;
 	height = y * TILE_SIZE;
-	mlx_put_image_to_window(game->mlx, game->win, image_to_draw, width, height);
+	mlx_put_image_to_window(game->mlx, game->win,
+		image_to_draw, width, height);
 }
 
 void	draw_map(t_game *game)
@@ -44,7 +45,8 @@ void	draw_map(t_game *game)
 		x = 0;
 		while (x < game->map_width)
 		{
-			mlx_put_image_to_window(game->mlx, game->win, game->tile, x * TILE_SIZE, y * TILE_SIZE);
+			mlx_put_image_to_window(game->mlx, game->win, game->tile,
+				x * TILE_SIZE, y * TILE_SIZE);
 			draw_tile(game, game->map[y][x], x, y);
 			x++;
 		}
