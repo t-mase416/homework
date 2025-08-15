@@ -6,13 +6,13 @@
 /*   By: tmase <tmase@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 22:57:56 by tmase             #+#    #+#             */
-/*   Updated: 2025/08/01 22:59:29 by tmase            ###   ########.fr       */
+/*   Updated: 2025/08/02 19:58:55 by tmase            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-char	*push_a(int *a_first, int *b_first)
+void	push_a(int *a_first, int *b_first)
 {
 	
 }

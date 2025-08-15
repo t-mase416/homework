@@ -6,13 +6,13 @@
 /*   By: tmase <tmase@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 18:57:33 by tmase             #+#    #+#             */
-/*   Updated: 2025/08/01 22:47:50 by tmase            ###   ########.fr       */
+/*   Updated: 2025/08/14 17:44:28 by tmase            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_bool	is_number(char *str)
+static t_bool	is_number(char *str)
 {
 	while(str)
 	{
@@ -21,7 +21,7 @@ t_bool	is_number(char *str)
 	}
 }
 
-t_bool	args_error(int argc, char **argv)
+static t_bool	args_error(int argc, char **argv)
 {
 	int	i;
 
@@ -37,28 +37,25 @@ t_bool	args_error(int argc, char **argv)
 	return (True);
 }
 
-void	print_list(char **list)
+t_stack	*create_stack(char **argv)
 {
-	int i;
+	t_stack	*a_stack;
 
-	i = 0;
-	while(list[i])
-	{
-		ft_printf("%s\n", list[i]);
-		i++;
-	}
+	a_stack->num = ft_atoi(argv[1]);
+	return(a_stack);
 }
 
 int	main(int argc, char **argv)
 {
-	char	**list;
+	t_stack	*a_stack;
+	t_stack *b_stack;
 
 	if (!args_error(argc, **argv))
 	{
 		ft_printf("Error\n");
 		return (1);
 	}
-	list = push_swap(**argv);
-	print_list(list);
+	a_stack = create_stack(**argv);
+	push_swap(a_stack, b_stack);
 	return (0);
 }
