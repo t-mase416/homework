@@ -6,7 +6,7 @@
 /*   By: tmase <tmase@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/29 21:00:10 by tmase             #+#    #+#             */
-/*   Updated: 2025/06/27 22:00:03 by tmase            ###   ########.fr       */
+/*   Updated: 2025/08/16 14:27:13 by tmase            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define GET_NEXT_LINE_H
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 100
+#  define BUFFER_SIZE 1
 # endif
 
 # include <stdlib.h>

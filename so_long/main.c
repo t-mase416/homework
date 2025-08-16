@@ -6,7 +6,7 @@
 /*   By: tmase <tmase@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 15:26:18 by tmase             #+#    #+#             */
-/*   Updated: 2025/08/01 18:35:38 by tmase            ###   ########.fr       */
+/*   Updated: 2025/08/16 15:04:40 by tmase            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,12 +50,6 @@ int	handle_keypress(int keycode, t_game *game)
 	return (0);
 }
 
-int	handle_destroy(t_game *game)
-{
-	cleanup_and_exit(game);
-	return (0);
-}
-
 int main(int argc, char **argv)
 {
 	t_game game;
@@ -90,7 +84,7 @@ int main(int argc, char **argv)
 	}
 	load_images(&game);
 	draw_map(&game);
-	mlx_hook(game.win, 17, 0, handle_destroy, &game);
+	mlx_hook(game.win, 17, 0, cleanup_and_exit, &game);
 	mlx_hook(game.win, 2, (1L<<0), handle_keypress, &game);
 	mlx_loop(game.mlx);
 	return (0);

@@ -1,36 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   moves.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tmase <tmase@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/01 18:58:25 by tmase             #+#    #+#             */
-/*   Updated: 2025/08/16 18:05:48 by tmase            ###   ########.fr       */
+/*   Created: 2025/08/16 15:27:20 by tmase             #+#    #+#             */
+/*   Updated: 2025/08/16 16:18:52 by tmase            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
+#include "so_long.h"
 
+char	
 
-#include <stdlib.h>
-#include <stdio.h>
-#include "libft/libft.h"
-#include "ft_printf/ft_printf.h"
+void	move_up(int keycode, t_game *game)
+{
+	game.map
+}
 
-typedef enum	e_bool{
-	False,
-	True
-}				t_bool;
+void	move_down(int keycode, t_game *game)
+{
 
-typedef	struct	s_node{
-	int	num;
-	t_node	*prev;
-	t_node	*next;
-}				t_node;
+}
 
+void	move_left(int keycode, t_game *game)
+{
 
+}
 
+void	move_right(int keycode, t_game *game)
+{
 
-#endif
+}

@@ -8,9 +8,8 @@ CFLAGS	= -Wall -Wextra -Werror
 # ソースファイル (.c)
 # ゲーム本体のソースファイルを追加
 SRCS	=	main.c \
-			src/graphics.c \
 			src/draw.c \
-			src/load_images.c \
+			src/images.c \
 			gnl/get_next_line.c \
 			gnl/get_next_line_utils.c \
 			map/read_map.c \
