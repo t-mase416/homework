@@ -6,7 +6,7 @@
 /*   By: tmase <tmase@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 16:29:13 by tmase             #+#    #+#             */
-/*   Updated: 2025/08/16 14:35:20 by tmase            ###   ########.fr       */
+/*   Updated: 2025/08/18 17:33:02 by tmase            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,17 +26,17 @@ void	free_map(char **map)
 	free(map);
 }
 
-static int	calc_height(char *file_name)
+static t_bool	calc_height(char *file_name, int *height)
 {
 	char 	*line;
-	int		height = 1;
-	size_t 	len = 0;
+	size_t 	len;
 	int 	fd;
 
+	len = 0;
 	fd = open(file_name, O_RDONLY);
 	line = get_next_line(fd);
 	if (!line)
-		return (close(fd), -1);
+		return (close(fd), False);
 	len = ft_strlen(line);
 	free(line);
 	while (1)
@@ -45,30 +45,22 @@ static int	calc_height(char *file_name)
 		if (!line)
 			break ;
 		if (len != ft_strlen(line))
-			return (close(fd), free(line), -1);
+			return (close(fd), free(line), False);
 		free(line);
-		height++;
+		(*height)++;
 	}
 	close(fd);
-	if (height < 3)
-		return (-1);
-	return (height);
+	if (*height < 3)
+		return (False);
+	return (True);
 }
 
-char	**load_map(char *file_name)
+t_bool	make_map(char **map, char *file_name, int height)
 {
 	int		fd;
 	int		i;
-	int		height;
 	int		len;
-	char	**map;
 
-	height = calc_height(file_name);
-	if (height < 0)
-		return (NULL);
-	map = malloc(sizeof(char *) * (height + 1));
-	if (!map)
-		return (NULL);
 	fd = open(file_name, O_RDONLY);
 	i = 0;
 	while (i < height)
@@ -78,7 +70,7 @@ char	**load_map(char *file_name)
 		{
 			map[i] = NULL;
 			free_map(map);
-			return (NULL);
+			return (False);
 		}
 		len = ft_strlen(map[i]);
 		if (len > 0 && map[i][len - 1] == '\n')
@@ -87,5 +79,23 @@ char	**load_map(char *file_name)
 	}
 	map[i] = NULL;
 	close(fd);
+	return (True);
+}
+
+char	**load_map(char *file_name)
+{
+	int		height;
+	char	**map;
+
+	height = 1;
+	if (!calc_height(file_name, &height))
+		return (NULL);
+	if (height < 0)
+		return (NULL);
+	map = malloc(sizeof(char *) * (height + 1));
+	if (!map)
+		return (NULL);
+	if (!make_map(map, file_name, height))
+		return (NULL);
 	return (map);
 }

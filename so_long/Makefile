@@ -17,7 +17,7 @@ SRCS	=	main.c \
 			map/check_components.c \
 			map/check_chars.c \
 			map/check_goal.c \
-			map/check_valid_map.c # check_valid_map.c を追加
+			map/check_valid_map.c
 
 # オブジェクトファイル (.o) - ソースファイルから自動生成
 OBJS	= $(SRCS:.c=.o)

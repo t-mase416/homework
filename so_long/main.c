@@ -6,17 +6,11 @@
 /*   By: tmase <tmase@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 15:26:18 by tmase             #+#    #+#             */
-/*   Updated: 2025/08/16 15:04:40 by tmase            ###   ########.fr       */
+/*   Updated: 2025/08/18 17:55:31 by tmase            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <X11/X.h>
-#include <X11/keysym.h>
-#include <math.h>
-#include "mlx.h"
 #include "so_long.h"
-#include "map/map.h"
 
 int	cleanup_and_exit(t_game *game)
 {
@@ -50,40 +44,54 @@ int	handle_keypress(int keycode, t_game *game)
 	return (0);
 }
 
+t_bool	game_setup(int argc, char **argv, t_game *game)
+{
+	if (argc != 2)
+	{
+		printf("Error\nargc must be 2");
+		return (False);
+	}
+	*game = (t_game){0};
+	game->map = load_map(argv[1]);
+	if (!game->map || !check_valid_map(game->map))
+	{
+		printf("Error\nmap error");
+		if (game->map)
+			free_map(game->map);
+		return (False);
+	}
+	return (True);
+}
+
+t_bool window_setup(t_game *game)
+{
+	game->mlx = mlx_init();
+	game->map_height = get_map_size(game->map);
+	game->map_width = ft_strlen(game->map[0]);
+	game->win = mlx_new_window(game->mlx, game->map_width * TILE_SIZE,
+		game->map_height * TILE_SIZE, "So Long");
+	if (!game->win)
+	{
+		printf("Error: mlx_new_window() failed\n");
+		if (game->map)
+			free_map(game->map);
+		mlx_destroy_display(game->mlx);
+		free(game->mlx);
+		return (False);
+	}
+	load_images(game);
+	draw_map(game);
+	return (True);
+}
+
 int main(int argc, char **argv)
 {
 	t_game game;
 
-	if (argc != 2)
-	{
-		printf("Error\nargc must be 2");
+	if (!game_setup(argc, argv, &game))
 		return (1);
-	}
-	game = (t_game){0};
-	game.map = load_map(argv[1]);
-	if (!game.map || !check_valid_map(game.map))
-	{
-		printf("Error\nmap error");
-		if (game.map)
-			free_map(game.map);
+	if (!window_setup(&game))
 		return (1);
-	}
-	game.mlx = mlx_init();
-	game.map_height = get_map_size(game.map);
-	game.map_width = ft_strlen(game.map[0]);
-	game.win = mlx_new_window(game.mlx, game.map_width * TILE_SIZE,
-		game.map_height * TILE_SIZE, "So Long");
-	if (!game.win)
-	{
-		printf("Error: mlx_new_window() failed\n");
-		if (game.map)
-			free_map(game.map);
-		mlx_destroy_display(game.mlx);
-		free(game.mlx);
-		return (1);
-	}
-	load_images(&game);
-	draw_map(&game);
 	mlx_hook(game.win, 17, 0, cleanup_and_exit, &game);
 	mlx_hook(game.win, 2, (1L<<0), handle_keypress, &game);
 	mlx_loop(game.mlx);
