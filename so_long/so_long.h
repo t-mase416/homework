@@ -6,7 +6,7 @@
 /*   By: tmase <tmase@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 18:29:14 by tmase             #+#    #+#             */
-/*   Updated: 2025/08/18 18:21:33 by tmase            ###   ########.fr       */
+/*   Updated: 2025/08/18 18:48:31 by tmase            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,5 +56,9 @@ void	destroy_images(t_game *game);
 void	draw_tile(t_game *game, char tile_type, int x, int y);
 void	draw_map(t_game *game);
 void	load_images(t_game *game);
+void	move_up(t_game *game);
+void	move_down(t_game *game);
+void	move_left(t_game *game);
+void	move_right(t_game *game);
 
 #endif
