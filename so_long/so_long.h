@@ -6,7 +6,7 @@
 /*   By: tmase <tmase@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 18:29:14 by tmase             #+#    #+#             */
-/*   Updated: 2025/08/18 18:48:31 by tmase            ###   ########.fr       */
+/*   Updated: 2025/08/30 21:50:53 by tmase            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,15 +50,18 @@ typedef struct	s_game {
 	int		map_height;
 	int		player_x;
 	int		player_y;
+	int		move_count;
 }				t_game;
 
 void	destroy_images(t_game *game);
 void	draw_tile(t_game *game, char tile_type, int x, int y);
 void	draw_map(t_game *game);
 void	load_images(t_game *game);
-void	move_up(t_game *game);
-void	move_down(t_game *game);
-void	move_left(t_game *game);
-void	move_right(t_game *game);
+// void	move_up(t_game *game);
+// void	move_down(t_game *game);
+// void	move_left(t_game *game);
+// void	move_right(t_game *game);
+void	move_player(t_game *game, int new_x, int new_y);
+void	find_player_start(t_game *game);
 
 #endif
