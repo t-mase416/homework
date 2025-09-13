@@ -6,7 +6,7 @@
 /*   By: tmase <tmase@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/12 22:35:31 by tmase             #+#    #+#             */
-/*   Updated: 2025/09/13 10:03:41 by tmase            ###   ########.fr       */
+/*   Updated: 2025/09/13 23:56:55 by tmase            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@
 void	sig_handler(int signum)
 {
 	if (signum == SIGUSR1)
-		write(1, "SIG 1 detected", 14);
+		write(1, "SIG 1 detected\n", 15);
 	else if (signum == SIGUSR2)
-		write(1, "SIG 2 detected", 14);
+		write(1, "SIG 2 detected\n", 15);
 }
 
 int main(void)
