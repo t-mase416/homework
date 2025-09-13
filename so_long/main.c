@@ -6,34 +6,11 @@
 /*   By: tmase <tmase@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 15:26:18 by tmase             #+#    #+#             */
-/*   Updated: 2025/08/30 21:53:21 by tmase            ###   ########.fr       */
+/*   Updated: 2025/09/12 21:52:56 by tmase            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-// void	find_player_start(t_game *game)
-// {
-// 	int	y;
-// 	int	x;
-
-// 	y = 0;
-// 	while (y < game->map_height)
-// 	{
-// 		x = 0;
-// 		while (x < game->map_width)
-// 		{
-// 			if (game->map[y][x] == 'P')
-// 			{
-// 				game->player_x = x;
-// 				game->player_y = y;
-// 				return ;
-// 			}
-// 			x++;
-// 		}
-// 		y++;
-// 	}
-// }
 
 int	cleanup_and_exit(t_game *game)
 {
@@ -68,21 +45,6 @@ int	handle_keypress(int keycode, t_game *game)
 
 	return (0);
 }
-
-// int	handle_keypress(int keycode, t_game *game)
-// {
-// 	if (keycode == KEY_ESC)
-// 		cleanup_and_exit(game);
-// 	if (keycode == KEY_UP)
-// 		move_up(game);
-// 	if (keycode == KEY_DOWN)
-// 		move_down(game);
-// 	if (keycode == KEY_LEFT)
-// 		move_left(game);
-// 	if (keycode == KEY_RIGHT)
-// 		move_right(game);
-// 	return (0);
-// }
 
 t_bool	game_setup(int argc, char **argv, t_game *game)
 {

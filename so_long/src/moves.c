@@ -10,81 +10,8 @@
 // /*                                                                            */
 // /* ************************************************************************** */
 
-// #include "so_long.h"
-
-// void	print_maps(char **map)
-// {
-// 	int y = 0;
-
-// 	while (map[y])
-// 	{
-// 		printf("%s\n", map[y]);
-// 		y++;
-// 	}
-// }
-
-// void	move_up(t_game *game)
-// {
-// 	int	x;
-// 	int	y;
-
-// 	if (game->map)
-// 	x = game->player_x;
-// 	y = game->player_y;
-// 	game->map[x][y] = game->map[x][y - 1];
-// 	game->map[x][y - 1] = 'P';
-// 	draw_map(game);
-// 	print_maps(game->map);
-// }
-
-// void	move_down(t_game *game)
-// {
-// 	int	x;
-// 	int	y;
-
-// 	if (game->map)
-// 	x = game->player_x;
-// 	y = game->player_y;
-// 	game->map[x][y] = game->map[x][y + 1];
-// 	game->map[x][y + 1] = 'P';
-// 	draw_map(game);
-// 	print_maps(game->map);
-// }
-
-// void	move_left(t_game *game)
-// {
-// 	int	x;
-// 	int	y;
-
-// 	if (game->map)
-// 	x = game->player_x;
-// 	y = game->player_y;
-// 	game->map[x][y] = game->map[x - 1][y];
-// 	game->map[x - 1][y] = 'P';
-// 	draw_map(game);
-// 	print_maps(game->map);
-// }
-
-// void	move_right(t_game *game)
-// {
-// 	int	x;
-// 	int	y;
-
-// 	if (game->map)
-// 	x = game->player_x;
-// 	y = game->player_y;
-// 	game->map[x][y] = game->map[x + 1][y];
-// 	game->map[x + 1][y] = 'P';
-// 	draw_map(game);
-// 	print_maps(game->map);
-// }
-
 #include "so_long.h"
 
-/*
-** マップを探索してプレイヤー('P')の初期位置を見つけ、
-** game構造体に保存する
-*/
 void	find_player_start(t_game *game)
 {
 	int	y;
@@ -108,31 +35,27 @@ void	find_player_start(t_game *game)
 	}
 }
 
-/*
-** プレイヤーを新しい座標(new_x, new_y)に移動させる
-*/
+void	put_str_to_window(t_game *game)
+{
+	char	*moves_str;
+	char	*display_text;
+	moves_str = ft_itoa(game->move_count);
+	display_text = ft_strjoin("Moves: ", moves_str);
+	mlx_string_put(game->mlx, game->win, 10, 20, 0xFFFFFF, display_text);
+	free(moves_str);
+	free(display_text);
+}
+
 void	move_player(t_game *game, int new_x, int new_y)
 {
-	// 1. 移動先が壁('1')でないかチェック（当たり判定）
 	if (game->map[new_y][new_x] == '1')
-	{
-		return; // 壁なら何もしない
-	}
-
-	// 2. 元のプレイヤー位置を床('0')に戻す
+		return;
 	game->map[game->player_y][game->player_x] = '0';
-
-	// 3. 新しい位置にプレイヤー('P')を移動
 	game->map[new_y][new_x] = 'P';
-
-	// 4. game構造体のプレイヤー座標を更新する
 	game->player_x = new_x;
 	game->player_y = new_y;
-
-	// 5. 移動回数をカウントし、コンソールに表示
 	game->move_count++;
 	printf("Move count: %d\n", game->move_count);
-
-	// 6. 画面全体を再描画して移動を反映させる
 	draw_map(game);
+	put_str_to_window(game);
 }
