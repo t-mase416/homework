@@ -6,7 +6,7 @@
 /*   By: tmase <tmase@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/12 22:35:31 by tmase             #+#    #+#             */
-/*   Updated: 2025/09/13 23:56:55 by tmase            ###   ########.fr       */
+/*   Updated: 2025/09/14 04:38:46 by tmase            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,34 @@
 #include <signal.h>
 #include <stdlib.h>
 
-void	sig_handler(int signum)
+// void	sig_handler(int signum)
+// {
+// 	if (signum == SIGUSR1)
+// 		write(1, "SIG 1 detected\n", 15);
+// 	else if (signum == SIGUSR2)
+// 		write(1, "SIG 2 detected\n", 15);
+// }
+
+void	sig_handler(int signum, siginfo_t *info, void *context)
 {
-	if (signum == SIGUSR1)
-		write(1, "SIG 1 detected\n", 15);
-	else if (signum == SIGUSR2)
-		write(1, "SIG 2 detected\n", 15);
+	static unsigned char	c;
+	static int				bit_count;
+	pid_t					client_pid;
+
+	(void)context;
+	client_pid = info->si_pid;
+	if (signum == SIGUSR2)
+		c |= (1 << bit_count);
+	bit_count++;
+	if (bit_count == 8)
+	{
+		if (c == '\0')
+			write(1, "\n", 1);
+		write(1, &c, 1);
+		bit_count = 0;
+		c = 0;
+	}
+	kill(client_pid, SIGUSR1);
 }
 
 int main(void)
@@ -33,18 +55,10 @@ int main(void)
 	my_pid = getpid();
 	printf("PID : %d\n", my_pid);
 	sigemptyset(&sa.sa_mask);
-	sa.sa_handler = &sig_handler;
-	sa.sa_flags = 0;
-	if (sigaction(SIGUSR1, &sa, NULL) == -1)
-	{
-		perror("sigaction");
-		return(1);
-	}
-	if (sigaction(SIGUSR2, &sa, NULL) == -1)
-	{
-		perror("sigaction");
-		return(1);
-	}
+	sa.sa_sigaction = &sig_handler;
+	sa.sa_flags = SA_SIGINFO;
+	sigaction(SIGUSR1, &sa, NULL);
+	sigaction(SIGUSR2, &sa, NULL);
 	while(1)
 		pause();
 	return(0);
