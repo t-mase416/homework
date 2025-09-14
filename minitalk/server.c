@@ -6,7 +6,7 @@
 /*   By: tmase <tmase@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/12 22:35:31 by tmase             #+#    #+#             */
-/*   Updated: 2025/09/14 04:38:46 by tmase            ###   ########.fr       */
+/*   Updated: 2025/09/14 04:45:43 by tmase            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,6 @@
 #include <unistd.h>
 #include <signal.h>
 #include <stdlib.h>
-
-// void	sig_handler(int signum)
-// {
-// 	if (signum == SIGUSR1)
-// 		write(1, "SIG 1 detected\n", 15);
-// 	else if (signum == SIGUSR2)
-// 		write(1, "SIG 2 detected\n", 15);
-// }
 
 void	sig_handler(int signum, siginfo_t *info, void *context)
 {

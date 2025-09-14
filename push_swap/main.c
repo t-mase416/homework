@@ -6,56 +6,92 @@
 /*   By: tmase <tmase@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 18:57:33 by tmase             #+#    #+#             */
-/*   Updated: 2025/08/14 17:44:28 by tmase            ###   ########.fr       */
+/*   Updated: 2025/09/14 09:27:14 by tmase            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include <limits.h>
 
-static t_bool	is_number(char *str)
+void	display_error_and_exit(void)
 {
-	while(str)
-	{
-		ft_isdigit(*str);
-		str++;
-	}
+	ft_printf("Error\n");
+	exit(1);
 }
 
-static t_bool	args_error(int argc, char **argv)
+t_bool	is_not_digit(char *str)
 {
 	int	i;
 
-	if(argc < 3 || 500 < argc)
-		return (False);
 	i = 0;
-	while(argv[i])
+	while (str[i])
 	{
-		if(!is_number(argv[i]))
-			return (False);
+		if (str[i] < '0' || '9' < str[i])
+			return (True);
 		i++;
 	}
-	return (True);
+	return (False);
 }
 
-t_stack	*create_stack(char **argv)
+t_bool is_not_digit_main(char **argv)
 {
-	t_stack	*a_stack;
+	int	i;
 
-	a_stack->num = ft_atoi(argv[1]);
-	return(a_stack);
-}
-
-int	main(int argc, char **argv)
-{
-	t_stack	*a_stack;
-	t_stack *b_stack;
-
-	if (!args_error(argc, **argv))
+	i = 0;
+	while (argv[i])
 	{
-		ft_printf("Error\n");
-		return (1);
+		if(is_not_digit(argv[i]))
+			return (True);
+		i++;
 	}
-	a_stack = create_stack(**argv);
-	push_swap(a_stack, b_stack);
-	return (0);
+	return (False);
+}
+
+t_bool	is_duplicate(int argc, char **argv)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (i < argc)
+	{
+		j = i + 1;
+		while (j < argc)
+		{
+			if (ft_strcmp(argv[i], argv[j]) == 0)
+				return (True);
+			j++;
+		}
+		i++;
+	}
+	return (False);
+}
+
+t_bool	is_int_overflow(char *str)
+{
+	long long	result;
+	int			sign;
+
+	result = 0;
+	sign = 0;
+	while ('0' <= *str && *str <= '9')
+	{
+		int digit = *str - '0';
+		
+	}
+}
+
+void	args_check(int argc, char **argv)
+{
+	if (argc < 3 || 500 < argc )
+		display_error_and_exit();
+	if (is_not_digit_main(argv))
+		display_error_and_exit();
+	if (is_duplicate(argc, argv))
+		display_error_and_exit();
+}
+
+int main(int argc, char **argv)
+{
+	args_check(argc, argv);
 }
