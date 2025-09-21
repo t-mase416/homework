@@ -6,7 +6,7 @@
 /*   By: tmase <tmase@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 15:26:18 by tmase             #+#    #+#             */
-/*   Updated: 2025/09/12 21:52:56 by tmase            ###   ########.fr       */
+/*   Updated: 2025/09/21 23:26:54 by tmase            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,15 +34,14 @@ int	handle_keypress(int keycode, t_game *game)
 	if (keycode == KEY_ESC)
 		cleanup_and_exit(game);
 
-	if (keycode == KEY_UP) // 上へ移動
+	if (keycode == KEY_UP)
 		move_player(game, game->player_x, game->player_y - 1);
-	if (keycode == KEY_LEFT) // 左へ移動
+	if (keycode == KEY_LEFT)
 		move_player(game, game->player_x - 1, game->player_y);
-	if (keycode == KEY_DOWN) // 下へ移動
+	if (keycode == KEY_DOWN)
 		move_player(game, game->player_x, game->player_y + 1);
-	if (keycode == KEY_RIGHT) // 右へ移動
+	if (keycode == KEY_RIGHT)
 		move_player(game, game->player_x + 1, game->player_y);
-
 	return (0);
 }
 
