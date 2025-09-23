@@ -6,7 +6,7 @@
 /*   By: tmase <tmase@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/12 22:35:31 by tmase             #+#    #+#             */
-/*   Updated: 2025/09/14 04:45:43 by tmase            ###   ########.fr       */
+/*   Updated: 2025/09/19 20:19:24 by tmase            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,12 @@ void	sig_handler(int signum, siginfo_t *info, void *context)
 	{
 		if (c == '\0')
 			write(1, "\n", 1);
-		write(1, &c, 1);
+		else
+			write(1, &c, 1);
 		bit_count = 0;
 		c = 0;
 	}
+	usleep(50);
 	kill(client_pid, SIGUSR1);
 }
 
