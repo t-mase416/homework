@@ -6,7 +6,7 @@
 /*   By: tmase <tmase@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 17:48:39 by tmase             #+#    #+#             */
-/*   Updated: 2025/06/12 16:50:20 by tmase            ###   ########.fr       */
+/*   Updated: 2025/09/28 19:58:01 by tmase            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,18 +63,4 @@ int	ft_printf(const char *fmt, ...)
 	}
 	va_end(args);
 	return (count);
-}
-
-#include <stdio.h>
-
-int main(void)
-{
-	char	*p = "Hello, world!";
-	int result = 0;
-
-	result = printf("%");
-	printf("%d\n", result);
-
-	result = ft_printf("%\n");
-	printf("%d\n", result);
 }

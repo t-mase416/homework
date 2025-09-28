@@ -1,41 +1,29 @@
-NAME	= push_swap
+CC = cc
+CFLAGS = -Wall -Wextra -Werror
+CLIENT_SRCS = client.c
+SERVER_SRCS = server.c
+LIBFT_PATH = libft
+LIBFT_ARCHIVE = $(LIBFT_PATH)/libft.a
+CLIENT_NAME = client
+SERVER_NAME = server
 
-CC		= cc
-CFLAGS	= -Wall -Wextra -Werror
+all: $(CLIENT_NAME) $(SERVER_NAME)
 
-SRCS	=	main.c \
+$(CLIENT_NAME): $(CLIENT_SRCS) $(LIBFT_ARCHIVE)
+	$(CC) $(CFLAGS) -o $@ $(CLIENT_SRCS) -L$(LIBFT_PATH) -lft
 
-OBJS	= $(SRCS:.c=.o)
+$(SERVER_NAME): $(SERVER_SRCS) $(LIBFT_ARCHIVE)
+	$(CC) $(CFLAGS) -o $@ $(SERVER_SRCS) -L$(LIBFT_PATH) -lft
 
-LIBFT_DIR	= libft
-LIBFT		= $(LIBFT_DIR)/libft.a
-
-PRINTF_DIR	= ft_printf
-PRINTF		= $(PRINTF_DIR)/libftprintf.a
-
-INCLUDES	= -I. -I$(LIBFT_DIR) -I$(PRINTF_DIR)
-
-all: $(NAME)
-
-$(NAME): $(OBJS) $(LIBFT) $(PRINTF)
-	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) -L$(LIBFT_DIR) -lft -L$(PRINTF_DIR) -lftprintf
-
-$(LIBFT):
-	@$(MAKE) -C $(LIBFT_DIR)
-
-$(PRINTF):
-	@$(MAKE) -C $(PRINTF_DIR)
-
-%.o: %.c
-	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
+$(LIBFT_ARCHIVE):
+	$(MAKE) -C $(LIBFT_PATH)
 
 clean:
-	@rm -f $(OBJS)
-	@$(MAKE) -C $(LIBFT_DIR) clean
+	$(MAKE) -C $(LIBFT_PATH) clean
 
 fclean: clean
-	@rm -f $(NAME)
-	@$(MAKE) -C $(LIBFT_DIR) fclean
+	$(MAKE) -C $(LIBFT_PATH) fclean
+	rm -f $(CLIENT_NAME) $(SERVER_NAME)
 
 re: fclean all
 

@@ -6,7 +6,7 @@
 /*   By: tmase <tmase@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/12 22:35:31 by tmase             #+#    #+#             */
-/*   Updated: 2025/09/19 20:19:24 by tmase            ###   ########.fr       */
+/*   Updated: 2025/09/28 19:47:18 by tmase            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,24 @@
 #include <signal.h>
 #include <stdlib.h>
 
+
 void	sig_handler(int signum, siginfo_t *info, void *context)
 {
-	static unsigned char	c;
-	static int				bit_count;
+	static unsigned char	c = 0;
+	static int				bit_count = 0;
+	static pid_t			current_client_pid = 0;
 	pid_t					client_pid;
 
 	(void)context;
 	client_pid = info->si_pid;
+	if (current_client_pid == 0)
+		current_client_pid = client_pid;
+	if (current_client_pid != client_pid)
+	{
+		current_client_pid = client_pid;
+		bit_count = 0;
+		c = 0;
+	}
 	if (signum == SIGUSR2)
 		c |= (1 << bit_count);
 	bit_count++;
@@ -37,7 +47,6 @@ void	sig_handler(int signum, siginfo_t *info, void *context)
 		bit_count = 0;
 		c = 0;
 	}
-	usleep(50);
 	kill(client_pid, SIGUSR1);
 }
 
