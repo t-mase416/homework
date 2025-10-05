@@ -6,7 +6,7 @@
 /*   By: tmase <tmase@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/16 19:14:11 by tmase             #+#    #+#             */
-/*   Updated: 2025/08/18 18:59:11 by tmase            ###   ########.fr       */
+/*   Updated: 2025/10/05 22:22:56 by tmase            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,12 @@ void	draw_tile(t_game *game, char tile_type, int x, int y)
 	else if (tile_type == 'C')
 		image_to_draw = game->coin;
 	else if (tile_type == 'E')
-		image_to_draw = game->exit;
+	{
+		if (game->total_coin_amount == game->coin_count)
+			image_to_draw = game->exit;
+		else
+			image_to_draw = game->tile;
+	}
 	else
 		return ;
 	width = x * TILE_SIZE;

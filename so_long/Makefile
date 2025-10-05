@@ -1,12 +1,6 @@
-# 実行ファイル名
 NAME	= so_long
-
-# コンパイラとフラグ
 CC		= cc
 CFLAGS	= -Wall -Wextra -Werror
-
-# ソースファイル (.c)
-# ゲーム本体のソースファイルを追加
 SRCS	=	main.c \
 			src/draw.c \
 			src/images.c \
@@ -20,37 +14,27 @@ SRCS	=	main.c \
 			map/check_goal.c \
 			map/check_valid_map.c
 
-# オブジェクトファイル (.o) - ソースファイルから自動生成
 OBJS	= $(SRCS:.c=.o)
 
-# libft の設定
 LIBFT_DIR	= libft
 LIBFT		= $(LIBFT_DIR)/libft.a
 
-# MiniLibX の設定
 MLX_DIR		= minilibx-linux
 MLX_LIB		= -L$(MLX_DIR) -lmlx -lXext -lX11 -lm
 
-# インクルードパス
 INCLUDES	= -I. -I$(LIBFT_DIR) -I$(MLX_DIR)
-
-# --- ルール ---
 
 all: $(NAME)
 
-# 実行ファイルのリンク
 $(NAME): $(OBJS) $(LIBFT)
 	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(MLX_LIB) -L$(LIBFT_DIR) -lft
 
-# libft のビルド
 $(LIBFT):
 	@$(MAKE) -C $(LIBFT_DIR)
 
-# オブジェクトファイルのコンパイル
 %.o: %.c
 	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
-# クリーンアップ
 clean:
 	@rm -f $(OBJS)
 	@$(MAKE) -C $(LIBFT_DIR) clean

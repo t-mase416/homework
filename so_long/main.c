@@ -6,7 +6,7 @@
 /*   By: tmase <tmase@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 15:26:18 by tmase             #+#    #+#             */
-/*   Updated: 2025/09/12 21:52:56 by tmase            ###   ########.fr       */
+/*   Updated: 2025/10/05 22:18:09 by tmase            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,13 +34,13 @@ int	handle_keypress(int keycode, t_game *game)
 	if (keycode == KEY_ESC)
 		cleanup_and_exit(game);
 
-	if (keycode == KEY_UP) // 上へ移動
+	if (keycode == KEY_UP)
 		move_player(game, game->player_x, game->player_y - 1);
-	if (keycode == KEY_LEFT) // 左へ移動
+	if (keycode == KEY_LEFT)
 		move_player(game, game->player_x - 1, game->player_y);
-	if (keycode == KEY_DOWN) // 下へ移動
+	if (keycode == KEY_DOWN)
 		move_player(game, game->player_x, game->player_y + 1);
-	if (keycode == KEY_RIGHT) // 右へ移動
+	if (keycode == KEY_RIGHT)
 		move_player(game, game->player_x + 1, game->player_y);
 
 	return (0);
@@ -50,7 +50,7 @@ t_bool	game_setup(int argc, char **argv, t_game *game)
 {
 	if (argc != 2)
 	{
-		printf("Error\nargc must be 2");
+		printf("Error\nargs must be 2");
 		return (False);
 	}
 	*game = (t_game){0};
@@ -63,6 +63,25 @@ t_bool	game_setup(int argc, char **argv, t_game *game)
 		return (False);
 	}
 	return (True);
+}
+
+void	coin_check(t_game *game)
+{
+	int	y;
+	int	x;
+
+	y = 0;
+	while (y < game->map_height)
+	{
+		x = 0;
+		while (x < game->map_width)
+		{
+			if (game->map[y][x] == 'C')
+				game->total_coin_amount++;
+			x++;
+		}
+		y++;
+	}
 }
 
 t_bool window_setup(t_game *game)
@@ -82,6 +101,7 @@ t_bool window_setup(t_game *game)
 		return (False);
 	}
 	find_player_start(game);
+	coin_check(game);
 	load_images(game);
 	draw_map(game);
 	return (True);

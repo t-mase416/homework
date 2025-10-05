@@ -50,6 +50,19 @@ void	move_player(t_game *game, int new_x, int new_y)
 {
 	if (game->map[new_y][new_x] == '1')
 		return;
+	if (game->map[new_y][new_x] == 'C')
+		game->coin_count++;
+	if (game->map[new_y][new_x] == 'E')
+	{
+		if (game->coin_count == game->total_coin_amount)
+			cleanup_and_exit(game);
+		game->player_x = new_x;
+		game->player_y = new_y;
+		game->move_count++;
+		printf("Move count: %d\n", game->move_count);
+		draw_map(game);
+		return;
+	}
 	game->map[game->player_y][game->player_x] = '0';
 	game->map[new_y][new_x] = 'P';
 	game->player_x = new_x;
@@ -57,5 +70,4 @@ void	move_player(t_game *game, int new_x, int new_y)
 	game->move_count++;
 	printf("Move count: %d\n", game->move_count);
 	draw_map(game);
-	put_str_to_window(game);
 }

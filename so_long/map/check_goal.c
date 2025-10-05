@@ -6,7 +6,7 @@
 /*   By: tmase <tmase@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/28 13:06:26 by tmase             #+#    #+#             */
-/*   Updated: 2025/06/28 21:00:17 by tmase            ###   ########.fr       */
+/*   Updated: 2025/10/05 19:39:50 by tmase            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,10 +103,8 @@ t_bool	check_goal(char **original_map)
 {
 	char			**copied_map;
 	int				height;
-	int				i;
 	t_coordinate	start;
 
-	i = 0;
 	height = get_map_size(original_map);
 	copied_map = map_copy(original_map, height);
 	if (!copied_map)
