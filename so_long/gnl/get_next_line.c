@@ -6,7 +6,7 @@
 /*   By: tmase <tmase@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/29 21:00:13 by tmase             #+#    #+#             */
-/*   Updated: 2025/06/08 15:09:41 by tmase            ###   ########.fr       */
+/*   Updated: 2025/10/06 21:14:18 by tmase            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,14 @@ char	*get_next_line(int fd)
 	char		*line;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
+	{
+		if (save)
+		{
+			free(save);
+			save = NULL;
+		}
 		return (NULL);
+	}
 	save = read_line(fd, save);
 	if (!save)
 		return (NULL);
@@ -104,13 +111,14 @@ char	*get_next_line(int fd)
 }
 
 // #include <fcntl.h>
+// #include <stdio.h>
 
 // int	main(void)
 // {
 // 	int fd;
 // 	char *line;
 
-// 	fd = open("test.txt", O_RDONLY);
+// 	fd = -1;
 // 	while ((line = get_next_line(fd)) != NULL)
 // 	{
 //     	printf("%s\n", line);

@@ -6,7 +6,7 @@
 /*   By: tmase <tmase@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 19:22:12 by tmase             #+#    #+#             */
-/*   Updated: 2025/10/06 19:47:39 by tmase            ###   ########.fr       */
+/*   Updated: 2025/10/06 20:56:25 by tmase            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,10 @@ void	event(t_game *game, int new_x, int new_y)
 	if (game->map[new_y][new_x] == 'E')
 	{
 		if (game->coin_count == game->total_coin_amount)
-			cleanup_and_exit(game);
+		{
+			game->clear_flag = 1;
+			mlx_loop_end(game->mlx);
+		}
 	}
 	move_player(game, new_x, new_y);
 }

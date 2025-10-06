@@ -6,7 +6,7 @@
 /*   By: tmase <tmase@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 18:29:14 by tmase             #+#    #+#             */
-/*   Updated: 2025/10/06 19:48:35 by tmase            ###   ########.fr       */
+/*   Updated: 2025/10/06 21:01:09 by tmase            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,15 +29,6 @@
 # define KEY_LEFT 97
 # define KEY_DOWN 115
 
-typedef struct s_data
-{
-	void	*img;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-}				t_data;
-
 typedef struct s_game
 {
 	void	*mlx;
@@ -56,6 +47,7 @@ typedef struct s_game
 	int		exit_y;
 	int		total_coin_amount;
 	int		coin_count;
+	int		clear_flag;
 }				t_game;
 
 t_bool	window_setup(t_game *game);
@@ -65,6 +57,6 @@ void	draw_tile(t_game *game, char tile_type, int x, int y);
 void	draw_map(t_game *game);
 void	load_images(t_game *game);
 void	event(t_game *game, int new_x, int new_y);
-int		cleanup_and_exit(t_game *game);
+int		cleanup(t_game *game);
 
 #endif
