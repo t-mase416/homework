@@ -21,18 +21,22 @@ OBJS	= $(SRCS:.c=.o)
 LIBFT_DIR	= libft
 LIBFT		= $(LIBFT_DIR)/libft.a
 
-MLX_DIR		= minilibx-linux
-MLX_LIB		= -L$(MLX_DIR) -lmlx -lXext -lX11 -lm
+MLX_DIR			= minilibx-linux
+MLX_LIB			= $(MLX_DIR)/libmlx.a
+MLX_FLAGS		= -L$(MLX_DIR) -lmlx -lXext -lX11
 
 INCLUDES	= -I. -I$(LIBFT_DIR) -I$(MLX_DIR)
 
 all: $(NAME)
 
-$(NAME): $(OBJS) $(LIBFT)
-	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(MLX_LIB) -L$(LIBFT_DIR) -lft
+$(NAME): $(OBJS) $(LIBFT) $(MLX_LIB)
+	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(MLX_FLAGS) -L$(LIBFT_DIR) -lft
 
 $(LIBFT):
 	@$(MAKE) -C $(LIBFT_DIR)
+
+$(MLX_LIB):
+	@$(MAKE) -C $(MLX_DIR)
 
 %.o: %.c
 	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
