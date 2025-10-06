@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmase <tmase@student.42.fr>                +#+  +:+       +#+        */
+/*   By: tmase <tmase@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 21:55:20 by tmase             #+#    #+#             */
-/*   Updated: 2025/05/07 20:49:09 by tmase            ###   ########.fr       */
+/*   Updated: 2025/08/01 19:11:12 by tmase            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,12 @@ int	ft_atoi(const char *str)
 		return (0);
 	while (*str)
 	{
-		result = (result * 10) + (*str - '0');
+		result = (result * 10) + ((*str - '0') * sign);
 		str++;
 		if (*str < '0' || *str > '9')
 			break ;
 	}
-	return (result * sign);
+	return (result);
 }
 
 // int main(void)

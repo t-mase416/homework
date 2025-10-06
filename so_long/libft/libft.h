@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmase <tmase@student.42.fr>                +#+  +:+       +#+        */
+/*   By: tmase <tmase@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/25 16:11:23 by tmase             #+#    #+#             */
-/*   Updated: 2025/05/09 14:26:11 by tmase            ###   ########.fr       */
+/*   Updated: 2025/10/05 19:16:49 by tmase            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <stdio.h>
 # include <stdint.h>
 # include <limits.h>
+# include "ft_printf.h"
 
 typedef struct s_list
 {
@@ -113,5 +114,25 @@ int				ft_tolower(int c);
 int				ft_toupper(int c);
 
 void			ft_striteri(char *s, void (*f)(unsigned int, char*));
+
+int				ft_printf(const char *fmt, ...);
+
+int				handle_format(const char *fmt, va_list args);
+
+int				print_pointer(void *ptr);
+
+int				print_hex(unsigned long n, char flag);
+
+int				print_string(char *s);
+
+int				print_integer(int n);
+
+int				print_uint(unsigned int uint);
+
+int				print_character(int c);
+
+int				check_valid(char c);
+
+int				hex_calc(unsigned long n, char flag, char *buff);
 
 #endif

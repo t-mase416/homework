@@ -6,13 +6,13 @@
 /*   By: tmase <tmase@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 21:22:48 by tmase             #+#    #+#             */
-/*   Updated: 2025/06/28 15:41:13 by tmase            ###   ########.fr       */
+/*   Updated: 2025/10/06 19:28:11 by tmase            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "map.h"
 
-static t_bool	top_bot_check(char *str)
+static t_bool	top_bottom_check(char *str)
 {
 	int	i;
 
@@ -28,7 +28,7 @@ static t_bool	top_bot_check(char *str)
 
 static t_bool	middle_check(char *str)
 {
-	int len;
+	int	len;
 
 	len = ft_strlen(str);
 	if (*str == '1' && str[len - 1] == '1')
@@ -41,7 +41,7 @@ t_bool	check_walls(char **map)
 	int	i;
 
 	i = 0;
-	if (!top_bot_check(map[i]))
+	if (!top_bottom_check(map[i]))
 		return (False);
 	i++;
 	while (map[i + 1])
@@ -50,7 +50,7 @@ t_bool	check_walls(char **map)
 			return (False);
 		i++;
 	}
-	if (!top_bot_check(map[i]))
+	if (!top_bottom_check(map[i]))
 		return (False);
 	return (True);
 }

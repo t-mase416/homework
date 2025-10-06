@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: tmase <tmase@student.42.fr>                +#+  +:+       +#+         #
+#    By: tmase <tmase@student.42tokyo.jp>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/25 13:19:20 by tmase             #+#    #+#              #
-#    Updated: 2025/05/14 13:33:49 by tmase            ###   ########.fr        #
+#    Updated: 2025/09/28 19:56:02 by tmase            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,7 +47,11 @@ SRCS	= ft_strlen.c \
 		  ft_putstr_fd.c \
 		  ft_putendl_fd.c \
 		  ft_putnbr_fd.c \
-		  ft_striteri.c
+		  ft_striteri.c \
+		  ft_printf.c \
+		  print_args.c \
+		  utils.c \
+
 
 BONUS_SRCS = ft_lstnew.c \
              ft_lstadd_front.c \

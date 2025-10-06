@@ -6,31 +6,18 @@
 /*   By: tmase <tmase@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 16:29:13 by tmase             #+#    #+#             */
-/*   Updated: 2025/08/18 17:33:02 by tmase            ###   ########.fr       */
+/*   Updated: 2025/10/06 19:33:17 by tmase            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "map.h"
 #include <stdio.h>
 
-void	free_map(char **map)
-{
-	int	i;
-
-	i = 0;
-	while (map[i])
-	{
-		free(map[i]);
-		i++;
-	}
-	free(map);
-}
-
 static t_bool	calc_height(char *file_name, int *height)
 {
-	char 	*line;
-	size_t 	len;
-	int 	fd;
+	char	*line;
+	size_t	len;
+	int		fd;
 
 	len = 0;
 	fd = open(file_name, O_RDONLY);

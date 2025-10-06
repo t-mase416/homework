@@ -6,13 +6,13 @@
 /*   By: tmase <tmase@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 21:22:44 by tmase             #+#    #+#             */
-/*   Updated: 2025/06/28 15:37:33 by tmase            ###   ########.fr       */
+/*   Updated: 2025/10/06 19:27:22 by tmase            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "map.h"
 
-static void	calc_components(char *str, int *P_count, int *E_count, int *C_count)
+static void	calc_components(char *str, int *p_count, int *e_count, int *c_count)
 {
 	int	i;
 
@@ -20,11 +20,11 @@ static void	calc_components(char *str, int *P_count, int *E_count, int *C_count)
 	while (str[i])
 	{
 		if (str[i] == 'P')
-			(*P_count)++;
+			(*p_count)++;
 		else if (str[i] == 'E')
-			(*E_count)++;
+			(*e_count)++;
 		else if (str[i] == 'C')
-			(*C_count)++;
+			(*c_count)++;
 		i++;
 	}
 	return ;
@@ -33,22 +33,22 @@ static void	calc_components(char *str, int *P_count, int *E_count, int *C_count)
 t_bool	check_components(char **map)
 {
 	int	i;
-	int	P_count;
-	int	E_count;
-	int	C_count;
+	int	p_count;
+	int	e_count;
+	int	c_count;
 
-	P_count = 0;
-	E_count = 0;
-	C_count = 0;
+	p_count = 0;
+	e_count = 0;
+	c_count = 0;
 	i = 0;
 	while (map[i])
 	{
-		calc_components(map[i], &P_count, &E_count, &C_count);
-		if (P_count > 1 || E_count > 1)
+		calc_components(map[i], &p_count, &e_count, &c_count);
+		if (p_count > 1 || e_count > 1)
 			return (False);
 		i++;
 	}
-	if (P_count != 1 || E_count != 1 || C_count < 1)
+	if (p_count != 1 || e_count != 1 || c_count < 1)
 		return (False);
 	return (True);
 }

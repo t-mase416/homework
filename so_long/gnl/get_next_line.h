@@ -6,7 +6,7 @@
 /*   By: tmase <tmase@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/29 21:00:10 by tmase             #+#    #+#             */
-/*   Updated: 2025/08/16 14:27:13 by tmase            ###   ########.fr       */
+/*   Updated: 2025/10/06 19:17:11 by tmase            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,5 @@ void	*ft_memcpy(void *dest, const void *src, size_t n);
 char	*ft_strchr(const char *s, int c);
 
 char	*get_next_line(int fd);
-
 
 #endif

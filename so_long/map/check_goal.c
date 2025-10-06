@@ -6,35 +6,20 @@
 /*   By: tmase <tmase@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/28 13:06:26 by tmase             #+#    #+#             */
-/*   Updated: 2025/10/05 19:39:50 by tmase            ###   ########.fr       */
+/*   Updated: 2025/10/06 19:31:38 by tmase            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "map.h"
 
-typedef	struct	s_coordinate{
-	int	x;
-	int	y;
-}				t_coordinate;
-
-int	get_map_size(char **map)
-{
-	int	height;
-
-	height = 0;
-	while (map[height])
-		height++;
-	return (height);
-}
-
 char	**map_copy(char **original_map, int height)
 {
-	int	i;
+	int		i;
 	char	**copied_map;
 
 	copied_map = malloc(sizeof(char *) * (height + 1));
 	if (!copied_map)
-	return (NULL);
+		return (NULL);
 	i = 0;
 	while (original_map[i])
 	{
@@ -45,7 +30,7 @@ char	**map_copy(char **original_map, int height)
 	return (copied_map);
 }
 
-void	get_coordinate(char **map, t_coordinate  *var, char c)
+void	get_coordinate(char **map, t_coordinate *var, char c)
 {
 	int	i;
 	int	j;
@@ -108,7 +93,7 @@ t_bool	check_goal(char **original_map)
 	height = get_map_size(original_map);
 	copied_map = map_copy(original_map, height);
 	if (!copied_map)
-	return (False);
+		return (False);
 	get_coordinate(original_map, &start, 'P');
 	flood_fill(copied_map, start.x, start.y);
 	if (!cmp_maps(original_map, copied_map))
