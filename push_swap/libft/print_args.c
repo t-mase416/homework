@@ -6,12 +6,13 @@
 /*   By: tmase <tmase@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 16:02:25 by tmase             #+#    #+#             */
-/*   Updated: 2025/06/21 14:01:34 by tmase            ###   ########.fr       */
+/*   Updated: 2025/09/28 20:06:40 by tmase            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include <stdio.h>
+
 int	print_string(char *s)
 {
 	int	count;

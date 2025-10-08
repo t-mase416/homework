@@ -6,7 +6,7 @@
 /*   By: tmase <tmase@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 18:58:25 by tmase             #+#    #+#             */
-/*   Updated: 2025/08/16 18:05:48 by tmase            ###   ########.fr       */
+/*   Updated: 2025/10/08 13:18:13 by tmase            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,20 +17,26 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include "libft/libft.h"
-#include "ft_printf/ft_printf.h"
 
-typedef enum	e_bool{
+typedef enum e_bool
+{
 	False,
 	True
 }				t_bool;
 
-typedef	struct	s_node{
-	int	num;
-	t_node	*prev;
-	t_node	*next;
+typedef struct s_node
+{
+	int	value;
+	struct s_node	*prev;
+	struct s_node	*next;
 }				t_node;
 
+typedef struct s_stacks
+{
+	t_node *a;
+	t_node *b;
+}				t_stacks;
 
-
+void	args_check(int argc, char **argv);
 
 #endif
