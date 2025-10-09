@@ -6,13 +6,30 @@
 /*   By: tmase <tmase@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 22:57:56 by tmase             #+#    #+#             */
-/*   Updated: 2025/08/02 19:58:55 by tmase            ###   ########.fr       */
+/*   Updated: 2025/10/09 19:40:41 by tmase            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	push_a(int *a_first, int *b_first)
+void	pa(t_stacks *stacks)
 {
-	
+	t_node	*node_to_push;
+
+	if (!stacks || !stacks->b)
+		return ;
+	node_to_push = pop(&(stacks->b));
+	add_front(&(stacks->a), node_to_push);
+	ft_putstr_fd("pa\n", 1);
+}
+
+void	pb(t_stacks *stacks)
+{
+	t_node	*node_to_push;
+
+	if (!stacks || !stacks->a)
+		return ;
+	node_to_push = pop(&(stacks->a));
+	add_front(&(stacks->b), node_to_push);
+	ft_putstr_fd("pb\n", 1);
 }
