@@ -6,7 +6,7 @@
 /*   By: tmase <tmase@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 18:58:25 by tmase             #+#    #+#             */
-/*   Updated: 2025/10/10 19:18:00 by tmase            ###   ########.fr       */
+/*   Updated: 2025/10/10 20:22:24 by tmase            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,5 +58,8 @@ void	rrr(t_stacks *stacks);
 
 void	sort(t_stacks *stacks);
 void	cleanup_stacks(t_stacks *stacks);
+int		get_stack_size(t_node *stack);
+void	sort_three(t_stacks *stack);
+void	sort_small(t_stacks *stack);
 
 #endif

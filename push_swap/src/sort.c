@@ -6,7 +6,7 @@
 /*   By: tmase <tmase@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/10 18:29:26 by tmase             #+#    #+#             */
-/*   Updated: 2025/10/10 19:24:07 by tmase            ###   ########.fr       */
+/*   Updated: 2025/10/10 20:10:36 by tmase            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static t_bool	is_sorted(t_node *stack)
 	return (True);
 }
 
-static int	get_stack_size(t_node *stack)
+int	get_stack_size(t_node *stack)
 {
 	int	size;
 
@@ -38,7 +38,7 @@ static int	get_stack_size(t_node *stack)
 	return (size);
 }
 
-static void	sort_three(t_stacks *stacks)
+void	sort_three(t_stacks *stacks)
 {
 	t_node	*head;
 	int		top;
@@ -78,8 +78,8 @@ void	sort(t_stacks *stacks)
 		sa(stacks);
 	else if (stack_size == 3)
 		sort_three(stacks);
-	// else if (stack_size <= 5)
-	// 	sort_small(stacks);
+	else if (stack_size <= 5)
+		sort_small(stacks);
 	// else
 	// 	sort_large(stacks);
 }

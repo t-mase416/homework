@@ -10,6 +10,7 @@ SRCS	=	main.c \
 			src/utils.c \
 			src/sort.c \
 			src/cleanup.c \
+			src/sort_small.c \
 
 OBJS	= $(SRCS:.c=.o)
 LIBFT_DIR	= libft
