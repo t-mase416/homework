@@ -6,7 +6,7 @@
 /*   By: tmase <tmase@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/09 19:39:52 by tmase             #+#    #+#             */
-/*   Updated: 2025/10/10 14:26:16 by tmase            ###   ########.fr       */
+/*   Updated: 2025/10/10 18:26:29 by tmase            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,4 +58,10 @@ void	add_back(t_node **stack_head, t_node *new_node)
 	last_node = find_last_node(*stack_head);
 	last_node->next = new_node;
 	new_node->prev = last_node;
+}
+
+void	display_error_and_exit(void)
+{
+	ft_putstr_fd("Error\n", 2);
+	exit(1);
 }

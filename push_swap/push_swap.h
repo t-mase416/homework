@@ -6,7 +6,7 @@
 /*   By: tmase <tmase@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 18:58:25 by tmase             #+#    #+#             */
-/*   Updated: 2025/10/09 19:42:13 by tmase            ###   ########.fr       */
+/*   Updated: 2025/10/10 19:18:00 by tmase            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,26 @@ typedef struct s_stacks
 	t_node *b;
 }				t_stacks;
 
-void	args_check(int argc, char **argv);
 t_node	*pop(t_node **stack_head);
-void	add_front(t_node **stack_head, t_node *new_node);
 t_node	*find_last_node(t_node *head);
+void	args_check(int argc, char **argv);
+void	add_front(t_node **stack_head, t_node *new_node);
 void	add_back(t_node **stack_head, t_node *new_node);
+void	display_error_and_exit(void);
+
+void	sa(t_stacks *stacks);
+void	sb(t_stacks *stacks);
+void	ss(t_stacks *stacks);
+void	pa(t_stacks *stacks);
+void	pb(t_stacks *stacks);
+void	ra(t_stacks *stacks);
+void	rb(t_stacks *stacks);
+void	rr(t_stacks *stacks);
+void	rra(t_stacks *stacks);
+void	rrb(t_stacks *stacks);
+void	rrr(t_stacks *stacks);
+
+void	sort(t_stacks *stacks);
+void	cleanup_stacks(t_stacks *stacks);
 
 #endif

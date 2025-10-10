@@ -3,6 +3,13 @@ CC		= cc
 CFLAGS	= -Wall -Wextra -Werror
 SRCS	=	main.c \
 			src/error.c \
+			src/push.c \
+			src/swap.c \
+			src/rotate.c \
+			src/rev_rotate.c \
+			src/utils.c \
+			src/sort.c \
+			src/cleanup.c \
 
 OBJS	= $(SRCS:.c=.o)
 LIBFT_DIR	= libft

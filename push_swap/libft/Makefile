@@ -6,7 +6,7 @@
 #    By: tmase <tmase@student.42tokyo.jp>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/25 13:19:20 by tmase             #+#    #+#              #
-#    Updated: 2025/09/28 19:56:02 by tmase            ###   ########.fr        #
+#    Updated: 2025/10/10 18:25:02 by tmase            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,7 @@ SRCS	= ft_strlen.c \
 		  ft_strrchr.c \
 		  ft_strnstr.c \
 		  ft_strncmp.c \
+		  ft_strcmp.c \
 		  ft_memset.c \
 		  ft_bzero.c \
 		  ft_memcpy.c \

@@ -6,35 +6,11 @@
 /*   By: tmase <tmase@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 02:38:53 by tmase             #+#    #+#             */
-/*   Updated: 2025/10/10 14:32:49 by tmase            ###   ########.fr       */
+/*   Updated: 2025/10/10 18:26:16 by tmase            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
-
-void	display_error_and_exit(void)
-{
-	ft_putstr_fd("Error\n", 2);
-	exit(1);
-}
-
-int	ft_strcmp(const char *s1, const char *s2)
-{
-	size_t			i;
-	unsigned char	c1;
-	unsigned char	c2;
-
-	i = 0;
-	while ((s1[i] || s2[i]))
-	{
-		c1 = (unsigned char)s1[i];
-		c2 = (unsigned char)s2[i];
-		if (c1 != c2)
-			return (c1 - c2);
-		i++;
-	}
-	return (0);
-}
 
 static t_bool	ft_is_number(const char *str)
 {
@@ -117,7 +93,6 @@ static t_bool	is_duplicate(int argc, char **argv)
 	}
 	return (False);
 }
-
 
 void	args_check(int argc, char **argv)
 {
