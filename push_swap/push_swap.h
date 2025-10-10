@@ -6,17 +6,16 @@
 /*   By: tmase <tmase@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 18:58:25 by tmase             #+#    #+#             */
-/*   Updated: 2025/10/10 20:22:24 by tmase            ###   ########.fr       */
+/*   Updated: 2025/10/10 20:26:33 by tmase            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-
-#include <stdlib.h>
-#include <stdio.h>
-#include "libft/libft.h"
+# include <stdlib.h>
+# include <stdio.h>
+# include "libft/libft.h"
 
 typedef enum e_bool
 {
@@ -26,15 +25,15 @@ typedef enum e_bool
 
 typedef struct s_node
 {
-	int	value;
+	int				value;
 	struct s_node	*prev;
 	struct s_node	*next;
 }				t_node;
 
 typedef struct s_stacks
 {
-	t_node *a;
-	t_node *b;
+	t_node	*a;
+	t_node	*b;
 }				t_stacks;
 
 t_node	*pop(t_node **stack_head);

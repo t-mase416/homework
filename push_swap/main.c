@@ -6,7 +6,7 @@
 /*   By: tmase <tmase@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 18:57:33 by tmase             #+#    #+#             */
-/*   Updated: 2025/10/10 19:18:17 by tmase            ###   ########.fr       */
+/*   Updated: 2025/10/10 20:26:53 by tmase            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static void	initialize_stack(t_stacks *stacks, int argc, char **argv)
 	}
 }
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
 	t_stacks	stacks;
 

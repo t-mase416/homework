@@ -6,7 +6,7 @@
 /*   By: tmase <tmase@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/10 20:09:03 by tmase             #+#    #+#             */
-/*   Updated: 2025/10/10 20:21:38 by tmase            ###   ########.fr       */
+/*   Updated: 2025/10/10 20:29:35 by tmase            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static t_node	*find_min_node(t_node *stack)
 {
-	t_node *min_node;
+	t_node	*min_node;
 
 	if (!stack)
 		return (NULL);

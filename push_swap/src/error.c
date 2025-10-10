@@ -6,7 +6,7 @@
 /*   By: tmase <tmase@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 02:38:53 by tmase             #+#    #+#             */
-/*   Updated: 2025/10/10 18:26:16 by tmase            ###   ########.fr       */
+/*   Updated: 2025/10/10 20:28:01 by tmase            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,11 +46,11 @@ static t_bool	is_int_overflow(const char *str)
 	while ('0' <= *str && *str <= '9' && *str)
 	{
 		digit = *str - '0';
-		if (sign == 1 && (result > INT_MAX / 10 ||
-			 (result == INT_MAX / 10 && digit > 7)))
+		if (sign == 1 && (result > INT_MAX / 10
+				|| (result == INT_MAX / 10 && digit > 7)))
 			return (False);
-		if (sign == -1 && (result > INT_MAX / 10 + 1 ||
-			(result == INT_MAX / 10 && digit > 8)))
+		if (sign == -1 && (result > INT_MAX / 10 + 1
+				|| (result == INT_MAX / 10 && digit > 8)))
 			return (False);
 		result = result * 10 + digit;
 		str++;
@@ -96,7 +96,7 @@ static t_bool	is_duplicate(int argc, char **argv)
 
 void	args_check(int argc, char **argv)
 {
-	if (argc < 2 || 500 < argc )
+	if (argc < 2 || 500 < argc)
 		display_error_and_exit();
 	if (!ft_is_valid_list(argv))
 		display_error_and_exit();

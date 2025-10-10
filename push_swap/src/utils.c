@@ -6,13 +6,13 @@
 /*   By: tmase <tmase@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/09 19:39:52 by tmase             #+#    #+#             */
-/*   Updated: 2025/10/10 18:26:29 by tmase            ###   ########.fr       */
+/*   Updated: 2025/10/10 20:29:02 by tmase            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_node *pop(t_node **stack_head)
+t_node	*pop(t_node **stack_head)
 {
 	t_node	*first_node;
 

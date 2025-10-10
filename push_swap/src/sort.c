@@ -6,7 +6,7 @@
 /*   By: tmase <tmase@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/10 18:29:26 by tmase             #+#    #+#             */
-/*   Updated: 2025/10/10 20:10:36 by tmase            ###   ########.fr       */
+/*   Updated: 2025/10/10 20:29:53 by tmase            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,18 +49,18 @@ void	sort_three(t_stacks *stacks)
 	top = head->value;
 	middle = head->next->value;
 	bottom = head->next->next->value;
-	if (top < middle && middle > bottom && top < bottom) //1 3 2
+	if (top < middle && middle > bottom && top < bottom)
 	{
 		sa(stacks);
 		ra(stacks);
 	}
-	else if (top > middle && middle < bottom && top < bottom) // 2 1 3
+	else if (top > middle && middle < bottom && top < bottom)
 		sa(stacks);
-	else if (top < middle && middle > bottom && top > bottom) // 2 3 1
+	else if (top < middle && middle > bottom && top > bottom)
 		rra(stacks);
-	else if (top > middle && middle < bottom && top > bottom) // 3 1 2
+	else if (top > middle && middle < bottom && top > bottom)
 		ra(stacks);
-	else if (top > middle && middle > bottom && top > bottom) // 3 2 1
+	else if (top > middle && middle > bottom && top > bottom)
 	{
 		sa(stacks);
 		rra(stacks);

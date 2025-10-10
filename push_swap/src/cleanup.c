@@ -6,13 +6,13 @@
 /*   By: tmase <tmase@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/10 19:16:18 by tmase             #+#    #+#             */
-/*   Updated: 2025/10/10 19:32:48 by tmase            ###   ########.fr       */
+/*   Updated: 2025/10/10 20:29:18 by tmase            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void	free_stack(t_node ** stack_head)
+static void	free_stack(t_node **stack_head)
 {
 	t_node	*current;
 	t_node	*temp;
