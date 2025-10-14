@@ -6,7 +6,7 @@
 /*   By: tmase <tmase@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 18:58:25 by tmase             #+#    #+#             */
-/*   Updated: 2025/10/10 20:26:33 by tmase            ###   ########.fr       */
+/*   Updated: 2025/10/13 19:23:19 by tmase            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ typedef enum e_bool
 typedef struct s_node
 {
 	int				value;
+	int				cost;
+	struct s_node	*target;
 	struct s_node	*prev;
 	struct s_node	*next;
 }				t_node;
