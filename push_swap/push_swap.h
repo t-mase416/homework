@@ -6,7 +6,7 @@
 /*   By: tmase <tmase@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 18:58:25 by tmase             #+#    #+#             */
-/*   Updated: 2025/10/13 19:23:19 by tmase            ###   ########.fr       */
+/*   Updated: 2025/10/16 15:23:31 by tmase            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,22 @@ typedef enum e_bool
 	True
 }				t_bool;
 
+typedef enum e_direction
+{
+	UP_UP,
+	DOWN_DOWN,
+	UP_DOWN,
+	DOWN_UP
+}			t_direciton;
+
 typedef struct s_node
 {
 	int				value;
-	int				cost;
-	struct s_node	*target;
+	int				index;
+	int				is_cheapest;
+	int				push_cost;
+	int				best_direction;
+	struct s_node	*target_node;
 	struct s_node	*prev;
 	struct s_node	*next;
 }				t_node;
@@ -62,5 +73,6 @@ void	cleanup_stacks(t_stacks *stacks);
 int		get_stack_size(t_node *stack);
 void	sort_three(t_stacks *stack);
 void	sort_small(t_stacks *stack);
+void	sort_large(t_stacks *stacks);
 
 #endif

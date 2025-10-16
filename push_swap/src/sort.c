@@ -6,7 +6,7 @@
 /*   By: tmase <tmase@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/10 18:29:26 by tmase             #+#    #+#             */
-/*   Updated: 2025/10/10 20:29:53 by tmase            ###   ########.fr       */
+/*   Updated: 2025/10/16 15:21:55 by tmase            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,6 @@ void	sort(t_stacks *stacks)
 		sort_three(stacks);
 	else if (stack_size <= 5)
 		sort_small(stacks);
-	// else
-	// 	sort_large(stacks);
+	else
+		sort_large(stacks);
 }
