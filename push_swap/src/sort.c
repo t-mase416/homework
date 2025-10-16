@@ -6,13 +6,13 @@
 /*   By: tmase <tmase@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/10 18:29:26 by tmase             #+#    #+#             */
-/*   Updated: 2025/10/16 15:21:55 by tmase            ###   ########.fr       */
+/*   Updated: 2025/10/16 20:59:44 by tmase            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static t_bool	is_sorted(t_node *stack)
+t_bool	is_sorted(t_node *stack)
 {
 	if (!stack)
 		return (True);

@@ -11,7 +11,7 @@ SRCS	=	main.c \
 			src/sort.c \
 			src/cleanup.c \
 			src/sort_small.c \
-			src/sort_large.c \
+			src/large_quick.c \
 
 OBJS	= $(SRCS:.c=.o)
 LIBFT_DIR	= libft

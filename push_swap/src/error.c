@@ -6,7 +6,7 @@
 /*   By: tmase <tmase@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 02:38:53 by tmase             #+#    #+#             */
-/*   Updated: 2025/10/12 23:54:52 by tmase            ###   ########.fr       */
+/*   Updated: 2025/10/16 20:17:05 by tmase            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ static t_bool	is_int_overflow(const char *str)
 		if (sign == 1 && (result > INT_MAX / 10
 				|| (result == INT_MAX / 10 && digit > 7)))
 			return (False);
-		if (sign == -1 && (result > INT_MAX / 10 + 1
+		if (sign == -1 && (result > INT_MAX / 10
 				|| (result == INT_MAX / 10 && digit > 8)))
 			return (False);
 		result = result * 10 + digit;
@@ -85,7 +85,7 @@ static t_bool	is_duplicate(int argc, char **argv)
 		j = i + 1;
 		while (j < argc)
 		{
-			if (ft_strcmp(argv[i], argv[j]) == 0)
+			if (ft_atoi(argv[i]) == ft_atoi(argv[j]))
 				return (True);
 			j++;
 		}
@@ -96,7 +96,7 @@ static t_bool	is_duplicate(int argc, char **argv)
 
 void	args_check(int argc, char **argv)
 {
-	if (argc < 2 || 500 < argc)
+	if (argc < 1)
 		display_error_and_exit();
 	if (!ft_is_valid_list(argv))
 		display_error_and_exit();
