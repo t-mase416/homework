@@ -6,7 +6,7 @@
 /*   By: tmase <tmase@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 16:56:35 by tmase             #+#    #+#             */
-/*   Updated: 2025/10/17 17:04:38 by tmase            ###   ########.fr       */
+/*   Updated: 2025/10/17 18:45:21 by tmase            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,11 +88,11 @@ static int	binary_search(int *array, int size, int value_to_find)
 	return (-1);
 }
 
-void	indexing(t_node *a, int	size)
+void	indexing(t_node *a, int size)
 {
 	t_node	*current;
 	int		index;
-	int 	*array;
+	int		*array;
 
 	array = copy_stack(a, size);
 	sort_array(array, size);
