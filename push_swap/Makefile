@@ -2,17 +2,18 @@ NAME	= push_swap
 CC		= cc
 CFLAGS	= -Wall -Wextra -Werror
 SRCS	=	main.c \
-			src/error.c \
-			src/push.c \
-			src/swap.c \
-			src/rotate.c \
-			src/rev_rotate.c \
-			src/utils.c \
-			src/sort.c \
-			src/cleanup.c \
-			src/sort_small.c \
-			src/radix_sort.c \
-			src/indexing.c \
+			operations/push.c \
+			operations/swap.c \
+			operations/rotate.c \
+			operations/rev_rotate.c \
+			utils/utils.c \
+			utils/error.c \
+			utils/cleanup.c \
+			utils/setup.c \
+			sort/sort.c \
+			sort/sort_small.c \
+			sort/radix_sort.c \
+			sort/indexing.c \
 
 OBJS	= $(SRCS:.c=.o)
 LIBFT_DIR	= libft

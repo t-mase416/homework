@@ -6,7 +6,7 @@
 /*   By: tmase <tmase@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 02:38:53 by tmase             #+#    #+#             */
-/*   Updated: 2025/10/17 17:11:28 by tmase            ###   ########.fr       */
+/*   Updated: 2025/10/17 19:39:18 by tmase            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ static t_bool	is_int_overflow(const char *str)
 	return (True);
 }
 
-t_bool	is_valid_list(char **argv)
+static t_bool	is_valid_list(char **argv)
 {
 	int	i;
 

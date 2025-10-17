@@ -6,7 +6,7 @@
 /*   By: tmase <tmase@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 18:58:25 by tmase             #+#    #+#             */
-/*   Updated: 2025/10/17 18:46:11 by tmase            ###   ########.fr       */
+/*   Updated: 2025/10/17 19:30:53 by tmase            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,5 +63,6 @@ void	sort_three(t_stacks *stack);
 void	sort_small(t_stacks *stack);
 void	sort_large(t_stacks *stacks);
 void	indexing(t_node *a, int size);
+void	setup_stacks(t_stacks *stacks, int argc, char **argv);
 
 #endif
