@@ -6,13 +6,13 @@
 /*   By: tmase <tmase@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/02 17:47:54 by tmase             #+#    #+#             */
-/*   Updated: 2025/10/10 14:32:05 by tmase            ###   ########.fr       */
+/*   Updated: 2025/10/17 17:09:07 by tmase            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	rotate(t_node	**stack_head)
+static void	rotate(t_node	**stack_head)
 {
 	t_node	*node_to_rotate;
 

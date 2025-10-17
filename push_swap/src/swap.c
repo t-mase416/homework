@@ -6,13 +6,13 @@
 /*   By: tmase <tmase@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 22:48:13 by tmase             #+#    #+#             */
-/*   Updated: 2025/10/10 18:55:44 by tmase            ###   ########.fr       */
+/*   Updated: 2025/10/17 17:08:37 by tmase            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	swap(t_node **stack_head)
+static void	swap(t_node **stack_head)
 {
 	t_node	*first;
 	t_node	*second;

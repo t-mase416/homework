@@ -6,13 +6,13 @@
 /*   By: tmase <tmase@student.42tokyo.jp>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 02:38:53 by tmase             #+#    #+#             */
-/*   Updated: 2025/10/16 20:17:05 by tmase            ###   ########.fr       */
+/*   Updated: 2025/10/17 17:11:28 by tmase            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-static t_bool	ft_is_number(const char *str)
+static t_bool	is_number(const char *str)
 {
 	if (!str || !*str)
 		return (False);
@@ -58,14 +58,14 @@ static t_bool	is_int_overflow(const char *str)
 	return (True);
 }
 
-t_bool	ft_is_valid_list(char **argv)
+t_bool	is_valid_list(char **argv)
 {
 	int	i;
 
 	i = 0;
 	while (argv[i])
 	{
-		if (!ft_is_number(argv[i]))
+		if (!is_number(argv[i]))
 			return (False);
 		if (!is_int_overflow(argv[i]))
 			return (False);
@@ -98,7 +98,7 @@ void	args_check(int argc, char **argv)
 {
 	if (argc < 1)
 		display_error_and_exit();
-	if (!ft_is_valid_list(argv))
+	if (!is_valid_list(argv))
 		display_error_and_exit();
 	if (is_duplicate(argc, argv))
 		display_error_and_exit();
