@@ -23,35 +23,64 @@ t_token	*consume_token(t_token **rest, t_token *token, t_TokenKind kind)
 	return (target);
 }
 
-t_cmd	*parse_simple_command(t_token	*token)
+// t_cmd	*parse_simple_command(t_token	*token)
+// {
+// 	t_cmd	*cmd;
+// 	int		i;
+// 	t_token	*t;
+// 	t_token	*tmp;
+// 	int		count;
+
+// 	cmd	= malloc(sizeof(t_cmd));
+// 	if (!cmd)
+// 		return (NULL);
+// 	count = 0;
+// 	tmp = token;
+// 	while (tmp && tmp->kind == TK_WORD)
+// 	{
+// 		count++;
+// 		tmp = tmp->next;
+// 	}
+// 	cmd->args = malloc(sizeof(char *) * (count + 1));
+// 	if (!cmd->args)
+// 		return (NULL);
+// 	i = 0;
+// 	while ((t = consume_token(&token, token, TK_WORD)))
+// 	{
+// 		cmd->args[i] = strdup(t->str);
+// 		i++;
+// 	}
+// 	cmd->args[i] = NULL;
+// 	cmd->next = NULL;
+// 	return (cmd);
+// }
+
+t_cmd	*parse_simple_command(t_token **rest, t_token *token)
 {
 	t_cmd	*cmd;
-	int		i;
-	t_token	*t;
-	t_token	*tmp;
-	int		count;
+	int		count = 0;
+	t_token	*tmp = token;
 
-	cmd	= malloc(sizeof(t_cmd));
-	if (!cmd)
-		return (NULL);
-	count = 0;
-	tmp = token;
 	while (tmp && tmp->kind == TK_WORD)
 	{
 		count++;
 		tmp = tmp->next;
 	}
+	cmd = malloc(sizeof(t_cmd));
+	if (!cmd)
+		return (NULL);
 	cmd->args = malloc(sizeof(char *) * (count + 1));
 	if (!cmd->args)
 		return (NULL);
-	i = 0;
-	while ((t = consume_token(&token, token, TK_WORD)))
+	int	i = 0;
+	while (token && token->kind == TK_WORD)
 	{
-		cmd->args[i] = strdup(t->str);
-		i++;
+		cmd->args[i++] = strdup(token->str);
+		token = token->next;
 	}
 	cmd->args[i] = NULL;
 	cmd->next = NULL;
+	*rest = token;
 	return (cmd);
 }
 
@@ -59,13 +88,17 @@ t_cmd	*parse_pipeline(t_token **token_list)
 {
 	t_cmd	*head_cmd;
 	t_cmd	*cur_cmd;
+	t_token	*cur_token = *token_list;
 
-	head_cmd = parse_simple_command(*token_list);
+	head_cmd = parse_simple_command(&cur_token, cur_token);
 	cur_cmd = head_cmd;
-	while(consume_pipe(token_list))
+	while(cur_token && cur_token->kind == TK_OPERATOR &&
+		ft_strncmp(cur_token->str, "|", 1) == 0)
 	{
-		cur_cmd->next = parse_simple_command(*token_list);
+		cur_token = cur_token->next;
+		cur_cmd->next = parse_simple_command(&cur_token, cur_token);
 		cur_cmd = cur_cmd->next;
 	}
+	*token_list = cur_token;
 	return (head_cmd);
 }
