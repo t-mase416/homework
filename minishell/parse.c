@@ -23,63 +23,75 @@ t_token	*consume_token(t_token **rest, t_token *token, t_TokenKind kind)
 	return (target);
 }
 
-// t_cmd	*parse_simple_command(t_token	*token)
-// {
-// 	t_cmd	*cmd;
-// 	int		i;
-// 	t_token	*t;
-// 	t_token	*tmp;
-// 	int		count;
 
-// 	cmd	= malloc(sizeof(t_cmd));
-// 	if (!cmd)
-// 		return (NULL);
-// 	count = 0;
-// 	tmp = token;
-// 	while (tmp && tmp->kind == TK_WORD)
-// 	{
-// 		count++;
-// 		tmp = tmp->next;
-// 	}
-// 	cmd->args = malloc(sizeof(char *) * (count + 1));
-// 	if (!cmd->args)
-// 		return (NULL);
-// 	i = 0;
-// 	while ((t = consume_token(&token, token, TK_WORD)))
-// 	{
-// 		cmd->args[i] = strdup(t->str);
-// 		i++;
-// 	}
-// 	cmd->args[i] = NULL;
-// 	cmd->next = NULL;
-// 	return (cmd);
-// }
+char	**add_arg(char **args, char *new_str)
+{
+	int i = 0;
+	char	**new_args;
+
+	while (args && args[i])
+	i++;
+	new_args = malloc(sizeof(char *) * (i + 2));
+	if (!new_args)
+	return(NULL);
+	int	j = 0;
+	while (j < i)
+	{
+		new_args[j] = args[j];
+		j++;
+	}
+	new_args[j] = strdup(new_str);
+	new_args[j + 1] = NULL;
+	free(args);
+	return (new_args);
+}
+
+void	handle_redirect(t_cmd *cmd, t_token **token)
+{
+	t_token *op = *token;
+	t_token	*file = op->next;
+
+	if (!file || file->kind != TK_WORD)
+	{
+		printf("syntax error near redirection\n");
+		return;
+	}
+	if (strcmp(op->str, ">") == 0 || strcmp(op->str, ">>") == 0)
+	{
+		if (cmd->filename_out)
+		free(cmd->filename_out);
+		cmd->filename_out = strdup(file->str);
+		cmd->append_mode = (strcmp(op->str, "<<") == 0);
+	}
+	else if (strcmp(op->str, "<") == 0)
+	{
+		if (cmd->filename_in)
+		free(cmd->filename_in);
+		cmd->filename_in = strdup(file->str);
+	}
+	*token = file->next;
+}
+
 
 t_cmd	*parse_simple_command(t_token **rest, t_token *token)
 {
-	t_cmd	*cmd;
-	int		count = 0;
-	t_token	*tmp = token;
-
-	while (tmp && tmp->kind == TK_WORD)
-	{
-		count++;
-		tmp = tmp->next;
-	}
-	cmd = malloc(sizeof(t_cmd));
+	t_cmd	*cmd = calloc(1, sizeof(t_cmd));
 	if (!cmd)
 		return (NULL);
-	cmd->args = malloc(sizeof(char *) * (count + 1));
-	if (!cmd->args)
-		return (NULL);
-	int	i = 0;
-	while (token && token->kind == TK_WORD)
+	while (token && token->kind != TK_EOF)
 	{
-		cmd->args[i++] = strdup(token->str);
-		token = token->next;
+		if (token->kind == TK_WORD)
+		{
+			cmd->args = add_arg(cmd->args, token->str);
+			token = token->next;
+		}
+		else if (token->kind == TK_OPERATOR)
+		{
+			if (strcmp(token->str, "|") == 0)
+				break;
+			handle_redirect(cmd, &token);
+		}
 	}
-	cmd->args[i] = NULL;
-	cmd->next = NULL;
 	*rest = token;
 	return (cmd);
 }
@@ -93,11 +105,11 @@ t_cmd	*parse_pipeline(t_token **token_list)
 	head_cmd = parse_simple_command(&cur_token, cur_token);
 	cur_cmd = head_cmd;
 	while(cur_token && cur_token->kind == TK_OPERATOR &&
-		ft_strncmp(cur_token->str, "|", 1) == 0)
-	{
-		cur_token = cur_token->next;
-		cur_cmd->next = parse_simple_command(&cur_token, cur_token);
-		cur_cmd = cur_cmd->next;
+		strcmp(cur_token->str, "|") == 0)
+		{
+			cur_token = cur_token->next;
+			cur_cmd->next = parse_simple_command(&cur_token, cur_token);
+			cur_cmd = cur_cmd->next;
 	}
 	*token_list = cur_token;
 	return (head_cmd);

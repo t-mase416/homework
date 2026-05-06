@@ -30,6 +30,7 @@ typedef struct	s_cmd
 	char			**args;
 	char			*filename_in;
 	char			*filename_out;
+	int				append_mode;
 	struct s_cmd	*next;
 }	t_cmd;
 
